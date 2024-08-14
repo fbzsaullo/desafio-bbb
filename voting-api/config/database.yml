@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *default
-  database: voting_api_test_ci
+  database: voting_api_test
 
 production:
   <<: *default
