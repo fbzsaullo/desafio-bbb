@@ -46,8 +46,7 @@ jobs:
         run: |
           cd voting-api
           cp config/database.yml.ci config/database.yml
-          RAILS_ENV=test bin/rails db:create
-          RAILS_ENV=test bin/rails db:schema:load
+          RAILS_ENV=test bin/rails db:create db:migrate db:seed db:schema:load
 
       - name: Run RSpec tests
         run: |
