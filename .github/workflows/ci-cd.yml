@@ -31,6 +31,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Create bundle directory
+        run: mkdir -p vendor/bundle
+
       - name: Cache Gems
         uses: actions/cache@v3
         with:
