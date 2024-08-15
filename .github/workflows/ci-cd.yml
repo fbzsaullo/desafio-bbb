@@ -47,15 +47,17 @@ jobs:
         with:
           ruby-version: '3.1.2'
 
+      - name: Check Bundler Config
+        run: |
+          cd voting-api
+          bundle config
+
       - name: Install dependencies
         run: |
           cd voting-api
           gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
-
-      - name: Verify Cache
-        run: ls -la vendor/bundle
 
       - name: Setup Database
         run: |
