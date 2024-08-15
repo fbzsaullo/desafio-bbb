@@ -1,5 +1,3 @@
-# spec/jobs/vote_job_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe VoteJob, type: :job do
@@ -19,7 +17,7 @@ RSpec.describe VoteJob, type: :job do
     it "logs an error if vote creation fails" do
       contest = create(:contest)
       participant = contest.participants.last
-      
+
       allow_any_instance_of(Vote).to receive(:save!).and_raise(ActiveRecord::RecordInvalid)
 
       expect(Rails.logger).to receive(:error).with(/Failed to save vote:/)
