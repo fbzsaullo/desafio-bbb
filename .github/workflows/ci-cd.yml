@@ -1,15 +1,5 @@
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs: 
-  test:
+  run-tests:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
@@ -27,6 +17,16 @@ jobs:
             --health-interval 10s
             --health-timeout 5s
             --health-retries 5
+
+      redis:
+        image: redis:6.2
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -61,6 +61,11 @@ jobs:
           cd voting-api
           cp config/database.yml.ci config/database.yml
           RAILS_ENV=test bin/rails db:create db:migrate db:seed db:schema:load
+
+      - name: Start Sidekiq
+        run: |
+          cd voting-api
+          RAILS_ENV=test bundle exec sidekiq -d -L log/sidekiq.log
 
       - name: Run RSpec tests
         run: |
