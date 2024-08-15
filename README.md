@@ -1,5 +1,23 @@
 # Desafio BBB
 
+### Inicializar o Backend
+
+1º Certifique-se de que o Docker e o Docker Compose estão instalados em sua máquina.
+
+2º Entre no diretório do backend
+
+```
+  cd voting-api
+```
+
+3º Construa e inicie os containers Docker:
+
+```
+docker-compose up --build
+```
+
+4º O servidor Rails estará disponível em http://localhost:3000.
+
 ### Inicializar o Frontend
 
 1º Instale o http-server globalmente
@@ -19,3 +37,5 @@ cd /frontend
 ```
 http-server
 ```
+
+4º O servidor estará disponível em http://127.0.0.1:8080/
