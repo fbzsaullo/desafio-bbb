@@ -9,34 +9,9 @@ on:
       - main
 
 jobs: 
-  run-tests:
-    if: github.event_name == 'pull_request'
+  setup:
+    name: Setup Environment
     runs-on: ubuntu-latest
-
-    services:
-      db:
-        image: postgres:13
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        ports:
-          - 5432:5432
-        options: >-
-            --health-cmd "pg_isready -U postgres"
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
-
-      redis:
-        image: redis:6.2
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -66,12 +41,48 @@ jobs:
           bundle config set --local path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
 
+  setup-db:
+    name: Setup Database
+    runs-on: ubuntu-latest
+    needs: setup
+    services:
+      db:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+            --health-cmd "pg_isready -U postgres"
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+
+    steps:
       - name: Setup Database
         run: |
           cd voting-api
           cp config/database.yml.ci config/database.yml
           RAILS_ENV=test bin/rails db:create db:migrate db:seed db:schema:load
 
+  setup-redis:
+    name: Setup Redis and Sidekiq
+    runs-on: ubuntu-latest
+    needs: setup-db
+    services:
+      redis:
+        image: redis:6.2
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
       - name: Start Sidekiq
         run: |
           cd voting-api
@@ -82,6 +93,11 @@ jobs:
             exit 1
           fi
 
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: setup-redis
+    steps:
       - name: Run RSpec tests
         run: |
           cd voting-api
