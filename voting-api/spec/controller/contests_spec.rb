@@ -39,4 +39,19 @@ RSpec.describe Api::ContestsController, type: :controller do
       expect(response).to have_http_status(422)
     end
   end
+
+  describe "PATCH #complete" do
+    it "completes a contest" do
+      contest = create(:contest)
+      patch :complete, params: { id: contest.id }
+      expect(response).to have_http_status(:success)
+      expect(contest.reload.status).to eq('completed')
+    end
+
+    it "returns an error when the contest is already completed" do
+      contest = create(:contest, status: 'completed')
+      patch :complete, params: { id: contest.id }
+      expect(response).to have_http_status(422)
+    end
+  end
 end

@@ -40,6 +40,8 @@ class Api::ContestsController < ApplicationController
     else
       render json: { errors: @contest.errors.full_messages }, status: :unprocessable_entity
     end
+  rescue AASM::InvalidTransition => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private
