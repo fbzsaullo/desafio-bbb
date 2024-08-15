@@ -36,10 +36,23 @@ jobs:
         with:
           ruby-version: '3.1.2'
 
+      - name: Create cache directory
+        run: mkdir -p voting-api/vendor/bundle
+
+      - name: Cache gems
+        uses: actions/cache@v3
+        with:
+          path: voting-api/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
       - name: Install dependencies
         run: |
           cd voting-api
           gem install bundler
+          bundle config set --local deployment 'true'
+          bundle config set --local path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
 
       - name: Setup Database
