@@ -1,6 +1,5 @@
 # Desafio BBB
 ## to do
-- confirmar com o Marcos se posso usar react.js para fazer o front
 - mostrar votos por hora
 - assugurar que não terá bots
   - reCAPTCHA
