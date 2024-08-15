@@ -7,7 +7,17 @@ RSpec.describe Contest, type: :model do
     Contest.all.update_all(status: 'completed')
   end
 
-  it { is_expected.to be_valid }
+  context 'validations' do
+    it { is_expected.to be_valid }
+    
+    it "does not allow creating a contest if the previous one is still active" do
+      active_contest = create(:contest, status: 'active')
+      new_contest = build(:contest)
+  
+      expect(new_contest).not_to be_valid
+      expect(new_contest.errors[:base]).to include("O último Contest ainda está ativo. Só é permitido criar um novo Contest quando o anterior estiver completed.")
+    end
+  end
 
   context 'associations' do
     it 'can have many participants' do
