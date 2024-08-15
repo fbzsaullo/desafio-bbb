@@ -9,9 +9,9 @@ RSpec.describe Contest, type: :model do
 
   context 'validations' do
     it { is_expected.to be_valid }
-    
+
     it "does not allow creating a contest if the previous one is still active" do
-      active_contest = create(:contest, status: 'active')
+      create(:contest, status: 'active')
       new_contest = build(:contest)
   
       expect(new_contest).not_to be_valid
