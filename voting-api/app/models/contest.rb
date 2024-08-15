@@ -2,13 +2,8 @@ class Contest < ApplicationRecord
   include AASM
 
   aasm column: 'status' do
-    state :pending, initial: true
-    state :active
+    state :active, initial: true
     state :completed
-
-    event :start do
-      transitions from: :pending, to: :active
-    end
 
     event :complete do
       transitions from: :active, to: :completed

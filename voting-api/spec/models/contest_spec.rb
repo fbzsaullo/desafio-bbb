@@ -15,17 +15,11 @@ RSpec.describe Contest, type: :model do
   end
 
   context 'aasm states' do
-    it 'initial state is pending' do
-      expect(subject.status).to eq('pending')
-    end
-
-    it 'transitions from pending to active' do
-      subject.start
+    it 'initial state is active' do
       expect(subject.status).to eq('active')
     end
 
     it 'transitions from active to completed' do
-      subject.start
       subject.complete
       expect(subject.status).to eq('completed')
     end
