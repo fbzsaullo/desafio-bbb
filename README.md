@@ -3,8 +3,8 @@
 - confirmar com o Marcos se posso usar react.js para fazer o front
 - mostrar votos por hora
 - assugurar que não terá bots
- - reCAPTCHA
- - Rack Attack
+  - reCAPTCHA
+  - Rack Attack
 - ver a possibilidade de fazer um user admin
 - fazer o design
 - fazer o front
