@@ -1,7 +1,6 @@
 # Desafio BBB
 ## to do
 - confirmar com o Marcos se posso usar react.js para fazer o front
-- criação de concurso, os participantes e tambem mostrar a quantidade de votos totais, finalizar concurso
 - assugurar que não terá bots
  - reCAPTCHA
  - Rack Attack
