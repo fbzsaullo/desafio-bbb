@@ -1,4 +1,4 @@
-# desafio-bbb
+# Desafio BBB
 
 ### Inicializar o Frontend
 
