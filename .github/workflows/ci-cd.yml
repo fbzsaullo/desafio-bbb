@@ -31,6 +31,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Cache Gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -40,13 +48,14 @@ jobs:
         run: |
           cd voting-api
           gem install bundler
+          bundle config set path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
 
       - name: Setup Database
         run: |
           cd voting-api
           cp config/database.yml.ci config/database.yml
-          RAILS_ENV=test bin/rails db:create db:migrate db:seed db:schema:load
+          RAILS_ENV=test bin/rails db:schema:load
 
       - name: Run RSpec tests
         run: |
