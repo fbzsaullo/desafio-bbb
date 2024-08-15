@@ -1,9 +1,7 @@
 # Desafio BBB
 ## to do
-- status e criação de contest
-  - contest so pode ser criado se o ultimo ja foi finalizado
-  - adicionar name ao contest
-  - pagina para ver os contest ja finalizados
+- adicionar name ao contest
+- pagina para ver os contest ja finalizados
 - participant image
 - mostrar votos por hora
 - assugurar que não terá bots
