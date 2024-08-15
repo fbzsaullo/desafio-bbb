@@ -52,8 +52,10 @@ jobs:
           cd voting-api
           gem install bundler
           bundle config set path 'vendor/bundle'
-          bundle check || bundle install --jobs 4 --retry 3
+          bundle install --jobs 4 --retry 3
 
+      - name: Verify Cache
+        run: ls -la vendor/bundle
 
       - name: Setup Database
         run: |
