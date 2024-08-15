@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     build: .
-    command: bash -c "bundle exec rails server -b 0.0.0.0"
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"
     volumes:
       - .:/app
     ports:
