@@ -36,10 +36,13 @@ jobs:
         with:
           ruby-version: '3.1.2'
 
+      - name: Create cache directory
+        run: mkdir -p voting-api/vendor/bundle
+
       - name: Cache gems
         uses: actions/cache@v3
         with:
-          path: vendor/bundle
+          path: voting-api/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
