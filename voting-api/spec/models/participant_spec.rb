@@ -19,5 +19,20 @@ RSpec.describe Participant, type: :model do
 
       expect(participant.votes.size).to eq(2)
     end
+
+    it 'can have many contest_participants' do
+      participant = create(:participant)
+      contest_participant = create(:contest_participant, participant: participant)
+
+      expect(participant.contest_participants).to include(contest_participant)
+    end
+
+    it 'can have many contests through contest_participants' do
+      participant = create(:participant)
+      contest = create(:contest)
+      participant.contests << contest
+
+      expect(participant.contests).to include(contest)
+    end
   end
 end
