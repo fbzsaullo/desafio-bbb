@@ -38,6 +38,6 @@ class Api::ContestsController < ApplicationController
   end
 
   def contest_params
-    params.require(:contest).permit(:name, participant_ids: [])
+    params.require(:contest).permit(participant_ids: [])
   end
 end
