@@ -7,7 +7,6 @@
 - ver a possibilidade de fazer um user admin
 - fazer o design
 - fazer o front
-- documentar API no postgres
 - documentar SETUP
 - documentar Arquitetura
 
