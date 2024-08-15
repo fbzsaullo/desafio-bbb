@@ -75,7 +75,12 @@ jobs:
       - name: Start Sidekiq
         run: |
           cd voting-api
-          RAILS_ENV=test bundle exec sidekiq -d -L log/sidekiq.log
+          RAILS_ENV=test bundle exec sidekiq -C config/sidekiq.yml &
+          sleep 5
+          if ! pgrep -f sidekiq; then
+            echo "Sidekiq failed to start"
+            exit 1
+          fi
 
       - name: Run RSpec tests
         run: |
