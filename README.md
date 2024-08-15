@@ -5,17 +5,17 @@
 1º Instale o http-server globalmente
 
 ```
-  npm install -g http-server
+npm install -g http-server
 ```
 
 2º Entre no diretório
 
 ```
-  cd /frontend
+cd /frontend
 ```
 
 3º Inicie o servidor
 
 ```
-  http-server
+http-server
 ```
