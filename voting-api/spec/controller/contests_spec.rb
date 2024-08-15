@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::ContestsController, type: :controller do
-  let!(:contest) { create(:contest) }
-  let!(:participant) { create(:participant) }
-  let!(:contest_participant) { create(:contest_participant, contest: contest, participant: participant) }
+  let(:contest) { create(:contest) }
+
+  before do
+    Contest.all.update_all(status: 'completed')
+  end
 
   describe "GET #index" do
     it "returns a success response" do
@@ -25,6 +27,7 @@ RSpec.describe Api::ContestsController, type: :controller do
 
   describe "POST #create" do
     it "creates a new contest" do
+      participant = create(:participant)
       expect {
         post :create, params: { contest: { participant_ids: [participant.id] } }
       }.to change(Contest, :count).by(1)
