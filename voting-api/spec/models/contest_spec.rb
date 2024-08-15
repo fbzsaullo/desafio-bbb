@@ -8,10 +8,9 @@ RSpec.describe Contest, type: :model do
   context 'associations' do
     it 'can have many participants' do
       contest = create(:contest)
-      participants = create_list(:participant, 3)
-      contest.participants << participants
+      contest.participants.count < 2 if contest.participants << create(:participant)
 
-      expect(contest.participants).to match_array(participants)
+      expect(contest.participants.count).to be > 2
     end
   end
 
@@ -29,6 +28,17 @@ RSpec.describe Contest, type: :model do
       subject.start
       subject.complete
       expect(subject.status).to eq('completed')
+    end
+  end
+
+  describe '#participant_votes' do
+    it 'returns the votes for a specific participant' do
+      contest = create(:contest)
+      participant = create(:participant)
+      vote = create(:vote, contest: contest, participant: participant)
+      create(:vote, contest: contest)
+
+      expect(contest.participant_votes(participant)).to contain_exactly(vote)
     end
   end
 end

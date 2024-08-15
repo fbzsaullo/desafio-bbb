@@ -17,5 +17,10 @@ RSpec.describe Vote, type: :model do
       association = described_class.reflect_on_association(:participant)
       expect(association.macro).to eq(:belongs_to)
     end
+
+    it 'belongs to a contest' do
+      association = described_class.reflect_on_association(:contest)
+      expect(association.macro).to eq(:belongs_to)
+    end
   end
 end

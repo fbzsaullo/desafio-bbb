@@ -17,4 +17,11 @@ class Contest < ApplicationRecord
 
   has_many :contest_participants
   has_many :participants, through: :contest_participants
+  has_many :votes
+
+  validates :participants, presence: true
+
+  def participant_votes(participant)
+    votes.where(participant: participant)
+  end
 end
