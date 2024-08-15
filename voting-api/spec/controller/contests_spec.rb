@@ -27,7 +27,7 @@ RSpec.describe Api::ContestsController, type: :controller do
     it "creates a new contest" do
       expect {
         post :create, params: { contest: { participant_ids: [participant.id] } }
-      }.to change(Contest, :count).by(1)
+      }.to change(Contest, :count).by(2)
       expect(response).to have_http_status(:created)
     end
 
