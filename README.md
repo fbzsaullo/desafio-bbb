@@ -1,5 +1,6 @@
 # Desafio BBB
 ## to do
+- participant image
 - mostrar votos por hora
 - assugurar que não terá bots
   - reCAPTCHA
