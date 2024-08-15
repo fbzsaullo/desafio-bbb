@@ -50,7 +50,7 @@ jobs:
       - name: Check Bundler Config
         run: |
           cd voting-api
-          bundle config
+          bundle config path
 
       - name: Install dependencies
         run: |
