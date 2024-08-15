@@ -1,4 +1,3 @@
 :concurrency: 5 
 :queues:
   - default
-  invalid_config: true
