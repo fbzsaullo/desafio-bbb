@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :vote do
-    participant
     contest
+    participant { association :participant }
   end
 end

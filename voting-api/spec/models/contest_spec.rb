@@ -2,8 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Contest, type: :model do
   subject { build(:contest) }
+  
+  before do
+    Contest.all.update_all(status: 'completed')
+  end
 
-  it { is_expected.to be_valid }
+  context 'validations' do
+    it { is_expected.to be_valid }
+
+    it "does not allow creating a contest if the previous one is still active" do
+      create(:contest, status: 'active')
+      new_contest = build(:contest)
+  
+      expect(new_contest).not_to be_valid
+      expect(new_contest.errors[:base]).to include("O último Contest ainda está ativo. Só é permitido criar um novo Contest quando o anterior estiver completed.")
+    end
+  end
 
   context 'associations' do
     it 'can have many participants' do
@@ -15,17 +29,11 @@ RSpec.describe Contest, type: :model do
   end
 
   context 'aasm states' do
-    it 'initial state is pending' do
-      expect(subject.status).to eq('pending')
-    end
-
-    it 'transitions from pending to active' do
-      subject.start
+    it 'initial state is active' do
       expect(subject.status).to eq('active')
     end
 
     it 'transitions from active to completed' do
-      subject.start
       subject.complete
       expect(subject.status).to eq('completed')
     end

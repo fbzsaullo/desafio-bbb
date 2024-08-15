@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Participant, type: :model do
   subject { build(:participant) }
+  
+  before do
+    Contest.all.update_all(status: 'completed')
+  end
 
   context "validations" do
     it { is_expected.to be_valid }
@@ -14,8 +18,9 @@ RSpec.describe Participant, type: :model do
 
   context "associations" do
     it "can have many votes" do
-      participant = create(:participant)
-      create_list(:vote, 2, participant: participant)
+      contest = create(:contest)
+      participant = contest.participants.last
+      create_list(:vote, 2, participant: participant, contest: contest)
 
       expect(participant.votes.size).to eq(2)
     end
