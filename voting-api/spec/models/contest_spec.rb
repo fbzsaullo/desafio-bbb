@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Contest, type: :model do
   subject { build(:contest) }
+  
+  before do
+    Contest.all.update_all(status: 'completed')
+  end
 
   it { is_expected.to be_valid }
 
