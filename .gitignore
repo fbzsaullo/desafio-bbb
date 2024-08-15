@@ -5,29 +5,29 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+/voting-api/.bundle
 
 # Ignore all environment files (except templates).
-/.env*
-!/.env*.erb
+/voting-api/.env*
+!/voting-api/.env*.erb
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/voting-api/log/*
+/voting-api/tmp/*
+!/voting-api/log/.keep
+!/voting-api/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
+/voting-api/tmp/pids/*
+!/voting-api/tmp/pids/
+!/voting-api/tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
-/storage/*
-!/storage/.keep
-/tmp/storage/*
-!/tmp/storage/
-!/tmp/storage/.keep
+/voting-api/storage/*
+!/voting-api/storage/.keep
+/voting-api/tmp/storage/*
+!/voting-api/tmp/storage/
+!/voting-api/tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+/voting-api/config/master.key
