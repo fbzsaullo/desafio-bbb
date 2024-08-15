@@ -4,13 +4,8 @@ module Api
     before_action :set_participant, only: [:create]
 
     def create
-      vote = Vote.new(contest: @contest, participant: @participant)
-      
-      if vote.save
-        render json: vote, status: :created
-      else
-        render json: { errors: vote.errors.full_messages }, status: :unprocessable_entity
-      end
+      VoteJob.perform_later(@contest.id, @participant.id)
+      render json: { message: "Vote has been cast" }, status: :ok
     end
 
     private
