@@ -10,7 +10,7 @@ on:
 
 jobs: 
   run-tests:
-    if: github.event_name == 'pull_request'
+    name: Run Tests
     runs-on: ubuntu-latest
 
     services:
