@@ -29,8 +29,7 @@
 !/voting-api/tmp/storage/
 !/voting-api/tmp/storage/.keep
 
-.env
-
+!/voting-api/.env.example
 # Ignore master key for decrypting credentials and more.
 /voting-api/config/master.key
 
@@ -58,3 +57,5 @@
 /frontend/*.njsproj
 /frontend/*.sln
 /frontend/*.sw?
+/frontend/*.env
+!/frontend/.env.example

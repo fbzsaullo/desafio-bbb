@@ -14,6 +14,24 @@
 ## Links
 [API DOC](https://documenter.getpostman.com/view/29899640/2sA3s7iojn)
 
+### 1. Configurar o `.env` para a API
+
+1. **Copie o arquivo de exemplo:**
+   ```bash
+   cp ./voting-api/.env.example ./voting-api/.env
+   ```
+
+2. **Abra o arquivo `.env` recém-criado em um editor de texto e ajuste as variáveis de ambiente conforme necessário.**
+
+### 2. Configurar o `.env` para o Frontend
+
+1. **Copie o arquivo de exemplo:**
+   ```bash
+   cp ./frontend/.env.example ./frontend/.env
+   ```
+
+2. **Abra o arquivo `.env` recém-criado em um editor de texto e ajuste as variáveis de ambiente conforme necessário.**
+
 ### Inicializar o Backend
 
 1º Certifique-se de que o Docker e o Docker Compose estão instalados em sua máquina.
