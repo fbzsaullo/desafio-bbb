@@ -3,7 +3,10 @@ import icon from "../../assets/icon.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const isLogged = localStorage.getItem("apiKey").length > 0 ? "Dashboard" : "Login";
+  const isLoggedIn = () => {
+    return !!localStorage.getItem('apiKey').length === 32;
+  }
+
   return (
     <NavbarStyle>
       <div className="container">
@@ -12,8 +15,8 @@ const Navbar = () => {
           <h4>Desafio BBB</h4>
         </div>
         <div className="button">
-          <Link to="/login">
-            <button>{isLogged}</button>
+          <Link to={isLoggedIn ? "/login" : "/dashboard"}>
+            <button>{isLoggedIn ? "Login" : "Dashboard"}</button>
           </Link>
         </div>
       </div>
