@@ -6,7 +6,11 @@ import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 const isLoggedIn = () => {
-  return !!localStorage.getItem('apiKey').length === 32;
+  const apiKey = localStorage.getItem('apiKey');
+  if (!apiKey) {
+    return false;
+  }
+  return apiKey.length > 32;
 };
 
 export const Router = () => {

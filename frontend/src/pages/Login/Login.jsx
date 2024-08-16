@@ -14,8 +14,8 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await login(email, password);
-      localStorage.setItem("apiKey", response.api_key);
-
+      localStorage.setItem("apiKey", response.data.api_key);
+      
       navigate('/dashboard');
     } catch (error) {
       console.error('Error logging in:', error);
