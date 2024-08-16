@@ -43,5 +43,18 @@ export const ActivedContestStyle = styled.div`
       }
     }
   }
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    .recaptcha {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      transform:scale(0.70);
+      transform-origin:0 0;
+    }
+  }
 }
 `;

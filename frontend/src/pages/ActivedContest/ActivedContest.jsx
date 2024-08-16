@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { ActivedContestStyle } from "./ActivedContest.syle.js";
 import { sendVote, getActivedContests } from "../../api";
+import Button from "../../components/Button/Button";
 
 const ActivedContest = () => {
   const [contestData, setContestData] = useState(null);
@@ -89,17 +90,16 @@ const ActivedContest = () => {
               </div>
             ))}
           </div>
-          {selectedParticipant && (
-            <>
-              <ReCAPTCHA
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                onChange={handleRecaptchaChange}
-              />
-              <button onClick={handleVote} className="vote-button" disabled={!recaptchaToken}>
-                Submit Vote
-              </button>
-            </>
-          )}
+          <div className="buttons">
+            <ReCAPTCHA
+              className='recaptcha'
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={handleRecaptchaChange}
+            />
+            <Button onClick={handleVote} className="vote-button" disabled={!recaptchaToken}>
+              Votar
+            </Button>
+          </div>
         </div>
       </div>
     </ActivedContestStyle>
