@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::ContestsController, type: :controller do
+  subject(:user) { create(:user, password: 'password') }
   let(:contest) { create(:contest) }
 
   before do
-    Contest.all.update_all(status: 'completed')
+    request.headers['Authorization'] = user.api_key
+    
+    Contest.update_all(status: 'completed')
   end
 
   describe "GET #index" do
@@ -57,7 +60,7 @@ RSpec.describe Api::ContestsController, type: :controller do
 
   describe "PATCH #complete" do
     it "completes a contest" do
-      contest = create(:contest)
+      contest = create(:contest, status: 'active')
       patch :complete, params: { id: contest.id }
       expect(response).to have_http_status(:success)
       expect(contest.reload.status).to eq('completed')

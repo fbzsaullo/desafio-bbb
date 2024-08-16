@@ -26,6 +26,9 @@ gem 'tzinfo-data', platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# bcrypt: A sophisticated and secure hash algorithm
+gem 'bcrypt', '~> 3.1.7'
+
 # Use Rack Attack to throttle and block abusive requests
 gem 'rack-attack'
 

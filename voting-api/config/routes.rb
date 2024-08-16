@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
+    post 'login', to: 'authentication#login'
+
     resources :contests, only: [:index, :show, :create] do
     collection do
       get 'actived', to: 'contests#actived'
@@ -16,6 +18,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :participants, only: [:index, :create, :destroy]
+    resources :participants, only: [:index, :create]
   end
 end

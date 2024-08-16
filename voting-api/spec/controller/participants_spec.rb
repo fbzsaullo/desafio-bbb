@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::ParticipantsController, type: :controller do
   subject { create(:participant) }
+  let(:user) { create(:user, password: 'password') }
+
+  before do
+    request.headers['Authorization'] = user.api_key
+  end
 
   describe 'POST #create' do
     it 'should create a participant' do
@@ -36,14 +41,6 @@ RSpec.describe Api::ParticipantsController, type: :controller do
 
       body = JSON.parse(response.body)
       expect(body.count).to eq(number_participants)
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    it 'should delete a participant' do
-      delete :destroy, params: { id: subject.id }
-      expect(response).to have_http_status(:no_content)
-      expect(Participant.exists?(subject.id)).to be_falsey
     end
   end
 end

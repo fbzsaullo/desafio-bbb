@@ -1,5 +1,5 @@
 class Api::ParticipantsController < ApplicationController
-  before_action :set_participant, only: [:destroy]
+  before_action :authorize_request, only: [:create]
 
   def index
     render json: Participant.all.as_json(methods: :photo_url)
@@ -15,16 +15,7 @@ class Api::ParticipantsController < ApplicationController
     end
   end
 
-  def destroy
-    @participant.destroy
-    head :no_content  
-  end
-
   private
-
-  def set_participant
-    @participant = Participant.find(params[:id])
-  end
 
   def participant_params
     params.require(:participant).permit(:name)
