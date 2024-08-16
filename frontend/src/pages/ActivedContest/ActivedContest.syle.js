@@ -42,6 +42,12 @@ export const ActivedContestStyle = styled.div`
         transition: 0.1s;
       }
     }
+    .selected {
+      background-color: #2D59DC;
+      color: #F2F4FC;
+      transition: 0.1s;
+      filter: drop-shadow(0px 0px 10px #2D59DC);
+    }
   }
   .buttons {
     margin-top: 20px;
