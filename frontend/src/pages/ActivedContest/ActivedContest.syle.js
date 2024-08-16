@@ -67,13 +67,15 @@ export const ActivedContestStyle = styled.div`
       flex-direction: column;
       gap: 10px;
 
-      .recaptcha {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        transform: scale(0.70);
-        transform-origin: 0 0;
+      @media (min-width: 768px) {
+        .recaptcha {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 8px;
+          transform: scale(0.70);
+          transform-origin: 0 0;
+        }
       }
     }
   }
