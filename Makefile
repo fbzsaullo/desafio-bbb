@@ -1,12 +1,14 @@
 start:
 	docker-compose up
 
-# up -d
-start -d:
-	docker-compose up -d
-
+stop:
+	docker-compose down
+	
 build:
 	docker-compose build
+
+bash:
+	docker-compose exec web bash
 
 test:
 	docker-compose run web bundle exec rspec
@@ -22,4 +24,4 @@ migration:
 	docker-compose run web bundle exec rails db:drop db:create db:migrate
 
 seed:
-  docker-compose run web bundle exec rails db:seed
+	docker-compose run web bundle exec rails db:seed
