@@ -4,7 +4,6 @@
 - pagina para ver os contest ja finalizados
 - mostrar votos por hora
 - assugurar que não terá bots
-  - reCAPTCHA
   - Rack Attack
 - ver a possibilidade de fazer um user admin
 - documentar SETUP
