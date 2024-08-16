@@ -29,6 +29,8 @@
 !/voting-api/tmp/storage/
 !/voting-api/tmp/storage/.keep
 
+.env
+
 # Ignore master key for decrypting credentials and more.
 /voting-api/config/master.key
 
