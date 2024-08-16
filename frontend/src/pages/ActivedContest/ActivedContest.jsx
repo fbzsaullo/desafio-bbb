@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { ActivedContestStyle } from "./ActivedContest.syle.js";
 import { sendVote, getActivedContests } from "../../api";
 
 const ActivedContest = () => {
   const [contestData, setContestData] = useState(null);
   const [selectedParticipant, setSelectedParticipant] = useState(null);
-  const [error, setError] = useState(null); // Estado para gerenciar erros
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const [error, setError] = useState(null);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchContestData = async () => {
@@ -20,7 +22,7 @@ const ActivedContest = () => {
         }
       } catch (error) {
         console.error('Error fetching active contests:', error);
-        setError(error.response.data.errors); 
+        setError(error.response.data.errors);
       }
     };
 
@@ -31,11 +33,15 @@ const ActivedContest = () => {
     setSelectedParticipant(participant);
   };
 
+  const handleRecaptchaChange = (value) => {
+    setRecaptchaToken(value);
+  };
+
   const handleVote = async () => {
-    if (!contestData || !selectedParticipant) return;
+    if (!contestData || !selectedParticipant || !recaptchaToken) return; 
 
     try {
-      await sendVote(contestData.contest.id, selectedParticipant.id);
+      await sendVote(contestData.contest.id, selectedParticipant.id, recaptchaToken);
       navigate('/obrigado-por-votar');
     } catch (error) {
       console.error('Error submitting vote:', error);
@@ -43,7 +49,6 @@ const ActivedContest = () => {
   };
 
   if (error) {
-    console.log(error);
     return (
       <ActivedContestStyle>
         <div className="container">
@@ -78,16 +83,22 @@ const ActivedContest = () => {
               >
                 <h2>{participant.name}</h2>
                 <img
-                  src={'http://localhost:3000/'+participant.photo_url}
+                  src={import.meta.env.VITE_API_URL+participant.photo_url}
                   alt={`participant ${participant.id}`}
                 />
               </div>
             ))}
           </div>
           {selectedParticipant && (
-            <button onClick={handleVote} className="vote-button">
-              Submit Vote
-            </button>
+            <>
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={handleRecaptchaChange}
+              />
+              <button onClick={handleVote} className="vote-button" disabled={!recaptchaToken}>
+                Submit Vote
+              </button>
+            </>
           )}
         </div>
       </div>
