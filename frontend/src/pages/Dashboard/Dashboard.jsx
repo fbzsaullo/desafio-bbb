@@ -1,12 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Sidebar, SidebarItem, MainContent, Stats, StatCard, StatValue, ChartContainer, ParticipantCard, ParticipantImage } from './Dashboard.style';
 import { faSignOutAlt, faEnvelope, faChartBar, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import { getActivedContest } from '../../api';
+import { getActivedContest, getActivedContestVotes } from '../../api';
 import { useEffect, useState } from 'react';
+import ContestChart from '../../components/ContestChart/ContestChart';
 
 const Dashboard = () => {
   const [contest, setContest] = useState(null);
   const [leader, setLeader] = useState(null);
+  const [voteData, setVoteData] = useState(null);
 
   useEffect(() => {
     getActivedContest()
@@ -20,6 +22,14 @@ const Dashboard = () => {
           });
           setLeader(leader);
         }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    getActivedContestVotes()
+      .then((response) => {
+        setVoteData(response.data.participants);
       })
       .catch((error) => {
         console.error(error);
@@ -74,7 +84,7 @@ const Dashboard = () => {
             <Stats>
               {contest.participants.map((participant) => (
                 <ParticipantCard key={participant.id}>
-                  <ParticipantImage src={import.meta.env.VITE_API_URL+participant.photo_url} alt={participant.name} />
+                  <ParticipantImage src={import.meta.env.VITE_API_URL + participant.photo_url} alt={participant.name} />
                   <h4>{participant.name}</h4>
                   <p>Total Votes: {participant.total_votes}</p>
                   <p>Percentage: {participant.percentage}%</p>
@@ -82,9 +92,8 @@ const Dashboard = () => {
               ))}
             </Stats>
             <ChartContainer>
-              <h3>Vote Distribution</h3>
-              {/* Replace this with the actual chart component */}
-              {/* <PlaceholderChart /> */}
+              <h3>Votos por hora</h3>
+              {voteData && <ContestChart voteData={voteData} />}
             </ChartContainer>
           </>
         ) : (

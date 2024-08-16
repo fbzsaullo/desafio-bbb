@@ -7,3 +7,7 @@ export const getContests = () => {
 export const getActivedContest = () => {
   return api.get('/contests/actived');
 }
+
+export const getActivedContestVotes = () => {
+  return api.get('/contests/actived_votes');
+}

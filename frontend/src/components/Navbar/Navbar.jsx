@@ -10,7 +10,7 @@ const Navbar = () => {
     }
     return apiKey.length > 32;
   };
-  
+
   return (
     <NavbarStyle>
       <div className="container">
@@ -19,8 +19,8 @@ const Navbar = () => {
           <h4>Desafio BBB</h4>
         </div>
         <div className="button">
-          <Link to={isLoggedIn ? "/dashboard" : "/login"}>
-            <button>{isLoggedIn ? "Dashboard" : "Login"}</button>
+          <Link to={isLoggedIn() ? "/dashboard" : "/login"}>
+            <button>{isLoggedIn() ? "Dashboard" : "Login"}</button>
           </Link>
         </div>
       </div>
