@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  margin: 30px auto 0 auto;
+  margin: 75px auto 75px auto;
   max-width: 1200px;
-  height: 80vh;
   text-align: center;
   padding: 10px;
   gap: 20px;
@@ -15,20 +14,21 @@ export const Sidebar = styled.div`
   width: 250px;
   background-color: #e3e7f1;
   padding: 20px;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
 `;
 
 export const SidebarItem = styled.div`
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 30px;
   font-size: 18px;
   color: ${(props) => (props.active ? '#007bff' : '#5a5a5a')};
   cursor: pointer;
-  background-color: transparent;
+  background-color: ${(props) => (props.active ? '#D6DDF4' : 'transparent')};
   border: none;
-  font-size: 18px;
-  color: #5a5a5a;
-  cursor: pointer;
+  border-radius: 30px;
 
   span {
     margin-left: 10px;

@@ -48,6 +48,10 @@ const Dashboard = () => {
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span>Desconectar</span>
         </SidebarItem>
+        <SidebarItem active={window.location.pathname === '/dashboard'}>
+          <FontAwesomeIcon icon={faTrophy} />
+          <span>Concurso Ativo</span>
+        </SidebarItem>
         <SidebarItem>
           <FontAwesomeIcon icon={faEnvelope} />
           <span>Concursos</span>
@@ -55,10 +59,6 @@ const Dashboard = () => {
         <SidebarItem>
           <FontAwesomeIcon icon={faChartBar} />
           <span>Participantes</span>
-        </SidebarItem>
-        <SidebarItem>
-          <FontAwesomeIcon icon={faTrophy} />
-          <span>Concurso Ativo</span>
         </SidebarItem>
       </Sidebar>
 
