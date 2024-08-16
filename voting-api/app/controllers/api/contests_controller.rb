@@ -22,7 +22,19 @@ class Api::ContestsController < ApplicationController
       contest: @contest,
       total_votes: total_votes,
       votes_by_participant: votes_by_participant
-  }
+  }, status: :ok
+  end
+
+  def actived
+    contest = Contest.where(status: 'active').last
+    if contest
+      render json: {
+        contest: contest,
+        participants: contest&.participants
+      }
+    else
+      render json: { errors: 'No actived contest' }, status: :not_found
+    end
   end
 
   def create

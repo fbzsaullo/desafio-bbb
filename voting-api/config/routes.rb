@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :contests, only: [:index, :show, :create] do
-      member do
-        patch 'complete', to: 'contests#complete'
-      end
+    collection do
+      get 'actived', to: 'contests#actived'
+    end
+    
+    patch 'complete', on: :member, to: 'contests#complete'
       
       resources :participants, only: [] do
         member do
