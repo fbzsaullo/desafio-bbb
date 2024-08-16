@@ -1,6 +1,10 @@
 start:
 	docker-compose up
 
+# up -d
+start -d:
+	docker-compose up -d
+
 build:
 	docker-compose build
 
