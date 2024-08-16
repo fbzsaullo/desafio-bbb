@@ -2,13 +2,11 @@
 ## to do
 - adicionar name ao contest
 - pagina para ver os contest ja finalizados
-- participant image
 - mostrar votos por hora
 - assugurar que não terá bots
   - reCAPTCHA
   - Rack Attack
 - ver a possibilidade de fazer um user admin
-- fazer o front
 - documentar SETUP
 - documentar Arquitetura
 - check documentação da API
