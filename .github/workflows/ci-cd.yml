@@ -9,9 +9,13 @@ on:
       - main
 
 jobs: 
-  run-tests:
-    name: Run Tests
+  backend-tests:
+    name: Run Backend Tests
     runs-on: ubuntu-latest
+
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    paths:
+      - 'voting-api/**'
 
     services:
       db:
@@ -86,3 +90,35 @@ jobs:
         run: |
           cd voting-api
           RAILS_ENV=test bundle exec rspec
+
+  frontend-tests:
+    name: Run Frontend Tests
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    paths:
+      - 'frontend/**'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
