@@ -40,7 +40,7 @@ class Api::ContestsController < ApplicationController
           id: participant.id,
           name: participant.name,
           photo_url: participant.photo_url,
-          percentage: percentage,
+          percentage: percentage.round(2),
           total_votes: participant_total_votes
         }
       end

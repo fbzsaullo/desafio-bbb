@@ -2,22 +2,33 @@ import styled from 'styled-components';
 
 export const DesignStyle = styled.div`
   .container {
-    display: flex;
-    margin: 75px auto;
     max-width: 1200px;
     text-align: center;
     padding: 10px;
     gap: 20px;
+
+    @media (min-width: 769px) {
+      display: flex;
+      margin: 75px auto;
+    }
   }
 
   .sidebar {
     border-radius: 10px;
-    width: 250px;
     background-color: #e3e7f1;
     padding: 20px;
-    position: sticky;
     top: 20px;
     height: fit-content;
+
+    @media (min-width: 769px) {
+      position: sticky;
+      width: 250px;
+    }
+
+    @media (max-width: 768px) {
+      width: auto;
+      margin: 40px 0;
+    }
   }
 
   .sidebar-item {
@@ -52,21 +63,30 @@ export const DesignStyle = styled.div`
   }
 
   .stats {
-    display: flex;
-    justify-content: space-between;
     gap: 20px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
+    @media (min-width: 769px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
   }
 
   .stat-card {
     background-color: #dce6f7;
     padding: 20px;
     border-radius: 10px;
-    width: 23%;
     text-align: center;
     h3 {
       margin-bottom: 10px;
+    }
+
+    @media (min-width: 769px) {
+      width: 23%;
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
     }
   }
 
@@ -79,6 +99,13 @@ export const DesignStyle = styled.div`
     background-color: #dce6f7;
     padding: 20px;
     border-radius: 10px;
+  }
+
+  .participants {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
   }
 
   .participant-card {
