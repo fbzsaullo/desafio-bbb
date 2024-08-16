@@ -1,6 +1,5 @@
 # Desafio BBB
 ## to do
-- adicionar name ao contest
 - pagina para ver os contest ja finalizados
 - mostrar votos por hora
 - assugurar que não terá bots
