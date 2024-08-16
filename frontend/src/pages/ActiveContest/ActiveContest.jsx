@@ -13,6 +13,7 @@ const ActiveContest = () => {
             <div className="participant">
               <h2>Bob Esponja</h2>
               <img src="https://via.placeholder.com/150" alt="participant 1" />
+              
             </div>
           </div>
         </div>
