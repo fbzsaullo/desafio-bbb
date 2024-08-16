@@ -14,9 +14,9 @@ class Api::ContestsController < ApplicationController
       participant_total_votes = @contest.votes.where(participant: participant).count
       percentage = total_votes.zero? ? 0 : (participant_total_votes.to_f / total_votes) * 100
       {
-        participant_id: participant.id,
-        participant_name: participant.name,
-        participant_photo_url: participant.photo_url,
+        id: participant.id,
+        name: participant.name,
+        photo_url: participant.photo_url,
         percentage: percentage,
         total_votes: participant_total_votes
       }
@@ -37,9 +37,9 @@ class Api::ContestsController < ApplicationController
         participant_total_votes = @contest.votes.where(participant: participant).count
         percentage = total_votes.zero? ? 0 : (participant_total_votes.to_f / total_votes) * 100
         {
-          participant_id: participant.id,
-          participant_name: participant.name,
-          participant_photo_url: participant.photo_url,
+          id: participant.id,
+          name: participant.name,
+          photo_url: participant.photo_url,
           percentage: percentage,
           total_votes: participant_total_votes
         }
@@ -48,7 +48,7 @@ class Api::ContestsController < ApplicationController
       render json: {
         contest: @contest,
         total_votes: total_votes,
-        votes_by_participant: votes_by_participant
+        participants: votes_by_participant
       }, status: :ok
     else
       render json: { errors: 'No actived contest' }, status: :not_found
@@ -57,11 +57,25 @@ class Api::ContestsController < ApplicationController
 
   def actived_votes
     if @contest
-      render json: @contest.votes, status: :ok
+      participants = @contest.participants.map do |participant|
+        {
+          id: participant.id,
+          name: participant.name,
+          votes: @contest.votes.where(participant_id: participant.id).map do |vote|
+            {
+              id: vote.id,
+              created_at: vote.created_at
+            }
+          end
+        }
+      end
+  
+      render json: { participants: participants }, status: :ok
     else
       render json: { errors: 'No actived contest' }, status: :not_found
     end
   end
+  
 
   def create
     contest = Contest.new(contest_params)

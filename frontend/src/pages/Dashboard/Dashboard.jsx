@@ -6,11 +6,20 @@ import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
   const [contest, setContest] = useState(null);
+  const [leader, setLeader] = useState(null);
 
   useEffect(() => {
     getActivedContest()
       .then((response) => {
-        setContest(response.data);
+        const contestData = response.data;
+        setContest(contestData);
+
+        if (contestData && contestData.participants.length > 0) {
+          const leader = contestData.participants.reduce((prev, current) => {
+            return prev.total_votes > current.total_votes ? prev : current;
+          });
+          setLeader(leader);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -53,16 +62,20 @@ const Dashboard = () => {
                 <StatValue>{contest.total_votes}</StatValue>
               </StatCard>
               <StatCard>
+                <h3>Liderando:</h3>
+                <h3>{leader ? leader.name : 'N/A'}</h3>
+              </StatCard>
+              <StatCard>
                 <h3>Participants</h3>
-                <StatValue>{contest.votes_by_participant.length}</StatValue>
+                <StatValue>{contest.participants.length}</StatValue>
               </StatCard>
             </Stats>
             <h3>Votes by Participant:</h3>
             <Stats>
-              {contest.votes_by_participant.map((participant) => (
-                <ParticipantCard key={participant.participant_id}>
-                  <ParticipantImage src={import.meta.env.VITE_API_URL+participant.participant_photo_url} alt={participant.participant_name} />
-                  <h4>{participant.participant_name}</h4>
+              {contest.participants.map((participant) => (
+                <ParticipantCard key={participant.id}>
+                  <ParticipantImage src={import.meta.env.VITE_API_URL+participant.photo_url} alt={participant.name} />
+                  <h4>{participant.name}</h4>
                   <p>Total Votes: {participant.total_votes}</p>
                   <p>Percentage: {participant.percentage}%</p>
                 </ParticipantCard>
