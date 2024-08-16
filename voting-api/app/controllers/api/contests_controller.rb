@@ -13,6 +13,7 @@ class Api::ContestsController < ApplicationController
       {
         participant_id: participant.id,
         participant_name: participant.name,
+        participant_photo_url: participant.photo_url,
         percentage: percentage,
         total_votes: participant_total_votes
       }
@@ -30,7 +31,7 @@ class Api::ContestsController < ApplicationController
     if contest
       render json: {
         contest: contest,
-        participants: contest&.participants
+        participants: contest&.participants.as_json(methods: :photo_url)
       }
     else
       render json: { errors: 'No actived contest' }, status: :not_found
