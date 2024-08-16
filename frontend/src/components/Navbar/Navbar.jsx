@@ -3,6 +3,7 @@ import icon from "../../assets/icon.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const isLogged = localStorage.getItem("apiKey").length > 0 ? "Dashboard" : "Login";
   return (
     <NavbarStyle>
       <div className="container">
@@ -12,7 +13,7 @@ const Navbar = () => {
         </div>
         <div className="button">
           <Link to="/login">
-            <button>Login</button>
+            <button>{isLogged}</button>
           </Link>
         </div>
       </div>

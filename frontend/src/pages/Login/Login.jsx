@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { LoginStyled } from "./Login.style";
 import { login } from "../../api";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await login(email, password);
       localStorage.setItem("apiKey", response.api_key);
+
+      navigate('/dashboard');
     } catch (error) {
       console.error("Login failed", error);
     }
