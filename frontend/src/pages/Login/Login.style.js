@@ -42,5 +42,8 @@ export const LoginStyled = styled.div`
     &:hover {
       background-color: #e0e3f7;
     }
+    .error-message {
+      background-color: #f44336;
+    }
   }
 `;

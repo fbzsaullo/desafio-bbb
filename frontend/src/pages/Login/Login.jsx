@@ -2,10 +2,13 @@ import { useState } from "react";
 import { LoginStyled } from "./Login.style";
 import { login } from "../../api";
 import { useNavigate } from 'react-router-dom';
+import Notification from "../../components/Notification/Notification";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -15,7 +18,12 @@ const Login = () => {
 
       navigate('/dashboard');
     } catch (error) {
-      console.error("Login failed", error);
+      console.error('Error logging in:', error);
+      setError(error.response.data.error);
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
     }
   };
 
@@ -37,12 +45,18 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+            />
           <button className="login-button" onClick={handleLogin}>
             Login
           </button>
         </div>
       </div>
+      <Notification 
+        message={error === 'Invalid email or password'
+          ? "Email ou senha inválidos"
+          : error}
+        show={showError} 
+      />
     </LoginStyled>
   );
 };
