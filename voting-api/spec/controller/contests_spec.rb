@@ -40,6 +40,21 @@ RSpec.describe Api::ContestsController, type: :controller do
     end
   end
 
+  describe "GET #actived" do
+    it "returns the last active contest" do
+      contest = create(:contest, status: 'active')
+      get :actived
+      expect(response).to have_http_status(:success)
+      json_response = JSON.parse(response.body)
+      expect(json_response['contest']['id']).to eq(contest.id)
+    end
+
+    it "returns an error when there is no active contest" do
+      get :actived
+      expect(response).to have_http_status(404)
+    end
+  end
+
   describe "PATCH #complete" do
     it "completes a contest" do
       contest = create(:contest)

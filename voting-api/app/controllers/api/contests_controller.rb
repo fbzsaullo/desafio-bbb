@@ -13,6 +13,7 @@ class Api::ContestsController < ApplicationController
       {
         participant_id: participant.id,
         participant_name: participant.name,
+        participant_photo_url: participant.photo_url,
         percentage: percentage,
         total_votes: participant_total_votes
       }
@@ -22,7 +23,19 @@ class Api::ContestsController < ApplicationController
       contest: @contest,
       total_votes: total_votes,
       votes_by_participant: votes_by_participant
-  }
+  }, status: :ok
+  end
+
+  def actived
+    contest = Contest.where(status: 'active').last
+    if contest
+      render json: {
+        contest: contest,
+        participants: contest&.participants.as_json(methods: :photo_url)
+      }
+    else
+      render json: { errors: 'No actived contest' }, status: :not_found
+    end
   end
 
   def create

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ActiveContestStyle = styled.div`
+export const ActivedContestStyle = styled.div`
 .container {
   display: flex;
   justify-content: center;
@@ -13,6 +13,8 @@ export const ActiveContestStyle = styled.div`
 .contest {
   .participants {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -37,7 +39,7 @@ export const ActiveContestStyle = styled.div`
       &:hover {
         cursor: pointer;
         filter: drop-shadow(0px 0px 10px #2D59DC);
-        transition: 0.3s;
+        transition: 0.1s;
       }
     }
   }

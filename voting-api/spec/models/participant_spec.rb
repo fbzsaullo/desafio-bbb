@@ -40,4 +40,20 @@ RSpec.describe Participant, type: :model do
       expect(participant.contests).to include(contest)
     end
   end
+
+  context "photo" do
+    it 'can attach a photo' do
+      photo = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/test_image.jpg'), 'image/jpg')
+      participant = create(:participant, photo: photo)
+
+      expect(participant.photo).to be_attached
+    end
+
+    it 'returns the photo URL' do
+      photo = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/test_image.jpg'), 'image/jpg')
+      participant = create(:participant, photo: photo)
+
+      expect(participant.photo_url).to be_present
+    end
+  end
 end
