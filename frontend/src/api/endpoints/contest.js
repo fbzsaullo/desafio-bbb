@@ -4,6 +4,6 @@ export const getContests = () => {
   return api.get('/contests');
 }
 
-export const getActivedContests = () => {
+export const getActivedContest = () => {
   return api.get('/contests/actived');
 }

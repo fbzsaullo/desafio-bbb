@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :contests, only: [:index, :show, :create] do
     collection do
       get 'actived', to: 'contests#actived'
+      get 'actived_votes', to: 'contests#actived_votes'
     end
     
     patch 'complete', on: :member, to: 'contests#complete'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { ActivedContestStyle } from "./ActivedContest.syle.js";
-import { sendVote, getActivedContests } from "../../api";
+import { sendVote, getActivedContest } from "../../api";
 import Button from "../../components/Button/Button";
 
 const ActivedContest = () => {
@@ -15,7 +15,7 @@ const ActivedContest = () => {
   useEffect(() => {
     const fetchContestData = async () => {
       try {
-        const response = await getActivedContests();
+        const response = await getActivedContest();
         if (response.data && response.data.participants && response.data.participants.length > 0) {
           setContestData(response.data);
         } else {

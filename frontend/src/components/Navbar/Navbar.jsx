@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isLoggedIn = () => {
-    return !!localStorage.getItem('apiKey').length === 32;
-  }
-
+    const apiKey = localStorage.getItem('apiKey');
+    if (!apiKey) {
+      return false;
+    }
+    return apiKey.length > 32;
+  };
+  
   return (
     <NavbarStyle>
       <div className="container">
@@ -15,8 +19,8 @@ const Navbar = () => {
           <h4>Desafio BBB</h4>
         </div>
         <div className="button">
-          <Link to={isLoggedIn ? "/login" : "/dashboard"}>
-            <button>{isLoggedIn ? "Login" : "Dashboard"}</button>
+          <Link to={isLoggedIn ? "/dashboard" : "/login"}>
+            <button>{isLoggedIn ? "Dashboard" : "Login"}</button>
           </Link>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LoginStyled } from "./Login.style";
 import { login } from "../../api";
-import { useNavigate } from 'react-router-dom';
 import Notification from "../../components/Notification/Notification";
 
 const Login = () => {
@@ -9,14 +8,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await login(email, password);
       localStorage.setItem("apiKey", response.data.api_key);
       
-      navigate('/dashboard');
+      window.location.href = "/dashboard";
     } catch (error) {
       console.error('Error logging in:', error);
       setError(error.response.data.error);

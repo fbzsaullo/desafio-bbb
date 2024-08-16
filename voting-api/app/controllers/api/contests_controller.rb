@@ -1,5 +1,7 @@
 class Api::ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :complete]
+  before_action :set_actived_contest, only: [:actived, :actived_votes]
+
   before_action :authorize_request, only: [:create, :complete]
 
   def index
@@ -27,13 +29,35 @@ class Api::ContestsController < ApplicationController
   }, status: :ok
   end
 
+
   def actived
-    contest = Contest.where(status: 'active').last
-    if contest
+    if @contest
+      total_votes = @contest.votes.count
+      votes_by_participant = @contest.participants.map do |participant|
+        participant_total_votes = @contest.votes.where(participant: participant).count
+        percentage = total_votes.zero? ? 0 : (participant_total_votes.to_f / total_votes) * 100
+        {
+          participant_id: participant.id,
+          participant_name: participant.name,
+          participant_photo_url: participant.photo_url,
+          percentage: percentage,
+          total_votes: participant_total_votes
+        }
+      end
+
       render json: {
-        contest: contest,
-        participants: contest&.participants.as_json(methods: :photo_url)
-      }
+        contest: @contest,
+        total_votes: total_votes,
+        votes_by_participant: votes_by_participant
+      }, status: :ok
+    else
+      render json: { errors: 'No actived contest' }, status: :not_found
+    end
+  end
+
+  def actived_votes
+    if @contest
+      render json: @contest.votes, status: :ok
     else
       render json: { errors: 'No actived contest' }, status: :not_found
     end
@@ -59,6 +83,10 @@ class Api::ContestsController < ApplicationController
   end
 
   private
+
+  def set_actived_contest
+    @contest = Contest.where(status: 'active').last
+  end
 
   def set_contest
     @contest = Contest.find(params[:id])

@@ -58,6 +58,16 @@ RSpec.describe Api::ContestsController, type: :controller do
     end
   end
 
+  describe "GET #actived_votes" do
+    it "returns the votes of the last active contest" do
+      contest = create(:contest, status: 'active')
+      create_list(:vote, 3, contest: contest, participant: contest.participants.first)
+      get :actived_votes
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body).length).to eq(3)
+    end
+  end
+
   describe "PATCH #complete" do
     it "completes a contest" do
       contest = create(:contest, status: 'active')

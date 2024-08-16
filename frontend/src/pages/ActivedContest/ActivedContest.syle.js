@@ -6,9 +6,7 @@ export const ActivedContestStyle = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
-    text-align: center;
-    padding: 10px;
+
   }
 
   .text {
