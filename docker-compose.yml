@@ -1,9 +1,9 @@
 services:
   web:
-    build: .
+    build: ./voting-api
     command: bash -c "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"
     volumes:
-      - .:/app
+      - ./voting-api:/app
     ports:
       - "3000:3000"
     environment:
@@ -14,10 +14,10 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    build: ./voting-api
     command: bundle exec sidekiq
     volumes:
-      - .:/app
+      - ./voting-api:/app
     environment:
       RAILS_ENV: development
       REDIS_URL: redis://redis:6379/0
@@ -38,3 +38,14 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - web
