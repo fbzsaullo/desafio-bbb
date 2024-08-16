@@ -28,8 +28,8 @@ export const NavbarStyle = styled.div`
   .button {
     button {
       height: 30px;
-      width: 100px;
       background-color: #F2F4FC;
+      padding: 0 15px;
       color: #2D59DC;
       border: none;
       border-radius: 16px;
