@@ -5,7 +5,6 @@
 - mostrar votos por hora
 - assugurar que não terá bots
   - Rack Attack
-- ver a possibilidade de fazer um user admin
 - documentar SETUP
 - documentar Arquitetura
 - check documentação da API
