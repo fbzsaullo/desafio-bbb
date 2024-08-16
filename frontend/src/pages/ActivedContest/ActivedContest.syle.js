@@ -11,6 +11,13 @@ export const ActivedContestStyle = styled.div`
     padding: 10px;
   }
 
+  .text {
+    margin: 20px;
+    h1 {
+      margin-bottom: 20px;
+    }
+  }
+
   .contest {
     .participants {
       display: flex;
@@ -36,6 +43,7 @@ export const ActivedContestStyle = styled.div`
           border-radius: 0 8px 8px 0;
           max-width: 30%;
         }
+
         h2 {
           margin-left: 20px;
           font-size: 1.2em;
