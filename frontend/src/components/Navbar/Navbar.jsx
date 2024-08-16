@@ -1,5 +1,6 @@
 import { NavbarStyle } from "./Navbar.style";
 import icon from "../../assets/icon.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,9 @@ const Navbar = () => {
           <h4>Desafio BBB</h4>
         </div>
         <div className="button">
-          <button>Login</button>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
         </div>
       </div>
     </NavbarStyle>
