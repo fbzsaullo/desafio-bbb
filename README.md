@@ -7,66 +7,67 @@
 - documentar SETUP
 - documentar Arquitetura
 
-## Links
-[API DOC](https://documenter.getpostman.com/view/29899640/2sA3s7iojn)
+## SETUP
 
-### 1. Configurar o `.env` para a API
+Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para facilitar a execução dos comandos. Siga as instruções abaixo para configurar e iniciar o ambiente de desenvolvimento.
 
-1. **Copie o arquivo de exemplo:**
+### Pré-requisitos
+
+- Docker
+- Docker Compose
+- Make (opcional) [VER TODOS COMANDOS MAKE](./Makefile)
+
+### Passos para Configuração
+
+#### Usando Docker Compose
+
+1. **Construir as imagens Docker:**
+
    ```bash
-   cp ./voting-api/.env.example ./voting-api/.env
+   docker-compose build
    ```
 
-2. **Abra o arquivo `.env` recém-criado em um editor de texto e ajuste as variáveis de ambiente conforme necessário.**
+2. **Iniciar os containers:**
 
-### 2. Configurar o `.env` para o Frontend
-
-1. **Copie o arquivo de exemplo:**
    ```bash
-   cp ./frontend/.env.example ./frontend/.env
+   docker-compose up
    ```
 
-2. **Abra o arquivo `.env` recém-criado em um editor de texto e ajuste as variáveis de ambiente conforme necessário.**
+#### Usando Make
 
-### Inicializar o Backend
+Se preferir utilizar o `make`, os seguintes comandos estão disponíveis:
 
-1º Certifique-se de que o Docker e o Docker Compose estão instalados em sua máquina.
+1. **Construir as imagens Docker:**
 
-2º Entre no diretório do backend
+   ```bash
+   make build
+   ```
 
-```
-  cd voting-api
-```
+2. **Iniciar os containers:**
 
-3º Construa e inicie os containers Docker:
+   ```bash
+   make start
+   ```
 
-```
-docker-compose up --build
-```
+### Parar e Remover Containers
 
-4º O servidor Rails estará disponível em http://localhost:3000.
+Para parar os containers e remover as redes, execute:
 
-### Inicializar o Frontend
-
-1º Instale o http-server globalmente
-
-```
-npm install -g http-server
+```bash
+docker-compose down
 ```
 
-2º Entre no diretório
+Ou, se estiver usando `make`:
 
-```
-cd /frontend
-```
-
-3º Inicie o servidor
-
-```
-http-server
+```bash
+make stop
 ```
 
-4º O servidor estará disponível em http://127.0.0.1:8080/
+### Acessando o App
+
+Após iniciar os containers, o front-end estará disponível no endereço [http://localhost:3000](http://localhost:3000).
+
+Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
 
 ## API - ENDPOINTS
 
