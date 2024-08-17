@@ -3,6 +3,7 @@ import { DesignStyle } from './Dashboard.style';
 import { faSignOutAlt, faEnvelope, faChartBar, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import ActiveContest from '../../components/ActiveContest/ActiveContest';
+import ContestsList from '../../components/ContestsList/ContestsList';
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('contest');
@@ -48,7 +49,7 @@ const Dashboard = () => {
           {activeSection === 'contest' ? (
             <ActiveContest />
           ) : activeSection === 'contests' ? (
-            <h2>Concursos:</h2>
+            <ContestsList />
           ) : activeSection === 'participants' ? (
             <h2>Participantes:</h2>
           ) : (
