@@ -18,6 +18,13 @@
   - [Usuário (logado)](#usuário-logado)
   - [Concurso](#concurso)
   - [Voto](#voto)
+- [Soluções](#soluções)
+  - [Impedir Bots](#impedir-votos-de-bots)
+  - [Volume Elevado de Votos](#gerenciamento-de-volume-elevado-de-votos)
+  - [Autenticação Segura](#autenticação-segura)
+  - [Testes Automatizados com RSpec](#testes-automatizados-com-rspec)
+  - [CI/CD Automatizado](#cicd-automatizado)
+  - [Docker e Docker Compose](#docker-e-docker-compose)
 - [API - ENDPOINTS](#api---endpoints)
   - [Contests](#contests)
   - [Participants](#participants)
@@ -118,24 +125,47 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
 
-# [Funcionalidades](#desafio-bbb)
+## [Funcionalidades](#desafio-bbb)
 
-## Usuário (não logado):
+### Usuário (não logado):
 - **Votação Ilimitada:** Pode votar quantas vezes desejar.
 - **Login para Produção:** Pode realizar login caso seja um usuário da produção.
 
-## Usuário (logado):
+### Usuário (logado):
 - **Dashboard do Concurso Ativo:** Acesso a um painel com informações detalhadas do concurso atualmente ativo.
 - **Criação de Participantes:** Possibilidade de criar novos participantes para os concursos.
 - **Criação de Concursos:** Pode iniciar novos concursos, respeitando as regras de status dos concursos.
 - **Visualização de Concursos:** Pode visualizar a lista completa de todos os concursos já criados, incluindo ativos e concluídos.
 
-## Concurso
+### Concurso
 - **Status de Criação:** Concursos são criados com o status `'active'`.
 - **Regras de Criação:** Um novo concurso só pode ser criado se todos os outros concursos existentes tiverem o status `'completed'`.
 
-## Voto
+### Voto
 - **Validação por reCAPTCHA:** O voto só é computado após a validação bem-sucedida do reCAPTCHA, garantindo que é uma interação humana.
+
+## [Soluções](#desafio-bbb)
+
+### Impedir Votos de Bots
+- reCAPTCHA para verificar a autenticidade do usuário antes do envio do voto.
+
+### Gerenciamento de Volume Elevado de Votos
+- Jobs em background para processar os votos, garantindo escalabilidade e desempenho durante picos de acesso.
+
+### Autenticação Segura
+- **Uso de JWT (JSON Web Tokens):** Garantir que todos os requests que requerem autenticação utilizem tokens JWT para validar o usuário. Isso assegura que apenas usuários autenticados possam acessar ou realizar determinadas ações, como enviar votos, garantindo a integridade e segurança do processo de votação.
+
+### Testes Automatizados com RSpec
+- **Cobertura Abrangente:** Utilizar RSpec para garantir uma cobertura completa dos testes, incluindo testes de unidade, integração, e requisições (request specs), assegurando que todas as partes do código, desde a lógica de negócios até as interações com a API, funcionem como esperado.
+
+### CI/CD Automatizado
+- **Pipeline Automatizado:** Configurar um pipeline CI/CD que executa testes automatizados, constrói e verifica a aplicação Rails e React em cada push e pull request na branch main.
+- **Deploy Seguro:** Verificar a execução correta das aplicações backend e frontend após a construção e antes do deploy.
+
+### Docker e Docker Compose
+- **Ambiente de Desenvolvimento Consistente:** Utilizar Docker Compose para orquestrar os serviços necessários, incluindo o banco de dados Postgres, Redis, a aplicação Rails, Sidekiq e o app React, garantindo um ambiente de desenvolvimento consistente para todos os desenvolvedores.
+- **Isolamento de Serviços:** Cada componente (API, Sidekiq, frontend) roda em seu próprio contêiner, facilitando a manutenção e o isolamento de falhas.
+- **Facilidade de Escalabilidade:** Configurar os serviços de forma que possam ser facilmente escalados horizontalmente, se necessário, apenas ajustando a configuração do Docker Compose.
 
 ## [API - ENDPOINTS](#desafio-bbb)
 
