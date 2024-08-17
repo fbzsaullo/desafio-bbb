@@ -54,7 +54,7 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 - Docker
 - Docker Compose
-- Make (opcional) [VER TODOS COMANDOS MAKE](./Makefile)
+- Make (opcional)
 
 ### Passos para Configuração
 
