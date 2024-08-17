@@ -2,7 +2,7 @@ class Api::ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :complete]
   before_action :set_actived_contest, only: [:actived, :actived_votes]
 
-  before_action :authorize_request, only: [:create, :complete]
+  before_action :authenticate, only: [:create, :complete]
 
   def index
     render json: Contest.all

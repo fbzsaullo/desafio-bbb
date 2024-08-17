@@ -21,5 +21,4 @@ class Api::VotesController < ApplicationController
   def set_participant
     @participant = @contest.participants.find(params[:participant_id])
   end
-
 end
