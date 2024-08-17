@@ -20,6 +20,9 @@ gem 'aasm'
 # JWT: JSON Web Token implementation in Ruby
 gem 'jwt'
 
+# Active Model Serializers: JSON serialization of objects
+gem "active_model_serializers"
+
 # Rack Cors: Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible
 gem 'rack-cors'
 
