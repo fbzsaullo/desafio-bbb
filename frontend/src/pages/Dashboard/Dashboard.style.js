@@ -49,6 +49,15 @@ export const DesignStyle = styled.div`
     }
   }
 
+  .disconnect {
+    color: #dc3545;
+    &:hover {
+      color: #dc3545;
+      filter: drop-shadow(0 0 0.75rem #dc3545);
+    }
+  }
+
+
   .sidebar-item.active {
     color: #007bff;
     background-color: #d6ddf4;
@@ -69,6 +78,24 @@ export const DesignStyle = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        filter: drop-shadow(0 0 0.75rem #007bff);
+      }
     }
   }
 
@@ -127,5 +154,61 @@ export const DesignStyle = styled.div`
     height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
+  }
+
+  .participants-create {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .participant-card-create {
+    display: flex;
+    align-items: center;
+    background-color: #f0f4ff;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e0e8ff;
+    }
+
+    &.selected {
+      background-color: #d6ddf4;
+      border: 2px solid #007bff;
+    }
+  }
+
+  .participant-card-create img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+
+  .participant-card-create h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .create-contest-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(0 0 0.75rem #007bff);
+    }
+
+    &:disabled {
+      background-color: #007bff;
+      cursor: not-allowed;
+    }
   }
 `;
