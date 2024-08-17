@@ -32,7 +32,6 @@
   - [Participants](#participants)
   - [Votes](#votes)
   - [User](#user)
-- [TO DO](#to-do)
 
 ## [Tecnologias](#desafio-bbb)
 - **Backend:**
@@ -502,6 +501,3 @@ Para parar os testes SPECs do Rails
   "expires_at": "2024-08-18T05:43:20.508Z"
 }
 ```
-
-## [to do](#desafio-bbb)
-- adicionar serialization
