@@ -6,7 +6,6 @@
   - Rack Attack
 - documentar SETUP
 - documentar Arquitetura
-- check documentação da API
 
 ## Links
 [API DOC](https://documenter.getpostman.com/view/29899640/2sA3s7iojn)
