@@ -108,4 +108,63 @@ RSpec.describe Contest, type: :model do
       expect(contest.active_contest_data).to be_nil
     end
   end
+
+  describe '#winner' do
+    it 'returns the participant with the most votes' do
+      contest = create(:contest)
+      participant1 = contest.participants.first
+      participant2 = contest.participants.second
+      create_list(:vote, 3, contest: contest, participant: participant1)
+      create_list(:vote, 2, contest: contest, participant: participant2)
+
+      expect(contest.winner).to eq(participant1)
+    end
+
+    it 'returns nil if there are no votes' do
+      contest = create(:contest)
+
+      expect(contest.winner).to be_nil
+    end
+  end
+
+  describe '#as_index_json' do
+    it 'returns the contest data in the expected JSON format' do
+      contest = create(:contest)
+      participant1 = contest.participants.first
+      participant2 = contest.participants.second
+      create_list(:vote, 3, contest: contest, participant: participant1)
+      create_list(:vote, 2, contest: contest, participant: participant2)
+
+      expected_json = {
+        id: contest.id,
+        status: contest.status,
+        created_at: contest.created_at,
+        updated_at: contest.updated_at,
+        total_votes: contest.total_votes,
+        winner: {
+          id: participant1.id,
+          name: participant1.name,
+          photo_url: participant1.photo_url,
+          total_votes: 3
+        }
+      }
+
+      expect(contest.as_index_json).to eq(expected_json)
+    end
+
+    it 'returns nil for the winner if there are no votes' do
+      contest = create(:contest)
+
+      expected_json = {
+        id: contest.id,
+        status: contest.status,
+        created_at: contest.created_at,
+        updated_at: contest.updated_at,
+        total_votes: 0,
+        winner: nil
+      }
+
+      expect(contest.as_index_json).to eq(expected_json)
+    end
+  end
 end
