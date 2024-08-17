@@ -16,6 +16,7 @@
   - **React**
   - **Vite:** Ferramenta de build para desenvolvimento rápido e eficiente.
 
+
 ## Setup
 
 Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para facilitar a execução dos comandos. Siga as instruções abaixo para configurar e iniciar o ambiente de desenvolvimento.
@@ -28,15 +29,31 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 ### Passos para Configuração
 
+1. **Clonar o repositório:**
+
+   ```bash
+   git clone git@github.com:fbzsaullo/desafio-bbb.git
+   cd desafio-bbb
+   ```
+
+2. **Configurar variáveis de ambiente:**
+
+   Copie o arquivo `.env.example` para `.env` tanto no diretório do front-end (`./frontend`) quanto no diretório do back-end (`./voting-api`):
+
+   ```bash
+   cp ./frontend/.env.example ./frontend/.env
+   cp ./voting-api/.env.example ./voting-api/.env
+   ```
+
 #### Usando Docker Compose
 
-1. **Construir as imagens Docker:**
+3. **Construir as imagens Docker:**
 
    ```bash
    docker-compose build
    ```
 
-2. **Iniciar os containers:**
+4. **Iniciar os containers:**
 
    ```bash
    docker-compose up
@@ -46,13 +63,13 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 Se preferir utilizar o `make`, os seguintes comandos estão disponíveis:
 
-1. **Construir as imagens Docker:**
+3. **Construir as imagens Docker:**
 
    ```bash
    make build
    ```
 
-2. **Iniciar os containers:**
+4. **Iniciar os containers:**
 
    ```bash
    make start
