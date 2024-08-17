@@ -5,9 +5,13 @@ RSpec.describe Api::ParticipantsController, type: :controller do
   let(:user) { create(:user, password: 'password') }
 
   before do
-    request.headers['Authorization'] = user.api_key
-  end
+    token = JsonWebToken.encode(user_id: user.id)
 
+    request.headers['Authorization'] = token
+
+    Contest.update_all(status: 'completed')
+  end
+  
   describe 'POST #create' do
     it 'should create a participant' do
       post :create, params: { participant: { name: 'John Doe'  } }

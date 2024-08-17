@@ -5,8 +5,10 @@ RSpec.describe Api::ContestsController, type: :controller do
   let(:contest) { create(:contest) }
 
   before do
-    request.headers['Authorization'] = user.api_key
-    
+    token = JsonWebToken.encode(user_id: user.id)
+
+    request.headers['Authorization'] = token
+
     Contest.update_all(status: 'completed')
   end
 
