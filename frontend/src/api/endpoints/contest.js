@@ -20,3 +20,12 @@ export const finishContest = (contestId) => {
     },
   });
 }
+
+export const createContest = (contestData) => {
+  const token = localStorage.getItem('token');
+  return api.post('/contests', contestData, {
+    headers: {
+      Authorization: token,
+    },
+  });
+}

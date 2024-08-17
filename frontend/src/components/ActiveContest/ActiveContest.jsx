@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { getActivedContest, getActivedContestVotes, finishContest } from '../../api';
+import { getActivedContest, getActivedContestVotes, finishContest, getParticipants, createContest } from '../../api';
 import ContestChart from '../../components/ContestChart/ContestChart';
 
 const ActiveContest = () => {
   const [contest, setContest] = useState(null);
   const [leader, setLeader] = useState(null);
   const [voteData, setVoteData] = useState(null);
+  const [participants, setParticipants] = useState([]);
+  const [selectedParticipants, setSelectedParticipants] = useState([]);
 
   useEffect(() => {
     getActivedContest()
@@ -31,6 +33,14 @@ const ActiveContest = () => {
       .catch((error) => {
         console.error('Erro ao buscar votos do concurso ativo:', error);
       });
+      
+    getParticipants()
+      .then((response) => {
+        setParticipants(response.data);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar participantes:', error);
+      });
   }, []);
 
   const handleFinishContest = () => {
@@ -44,6 +54,32 @@ const ActiveContest = () => {
           console.error('Erro ao finalizar o concurso:', error);
         });
     }
+  };
+
+  const handleCreateContest = () => {
+    const contestData = {
+      contest: {
+        participant_ids: selectedParticipants.map((participant) => participant.id),
+      },
+    };
+
+    createContest(contestData)
+      .then(() => {
+        console.log('Concurso criado com sucesso!');
+        // Optionally, you can refresh the active contest after creation
+        getActivedContest().then((response) => setContest(response.data));
+      })
+      .catch((error) => {
+        console.error('Erro ao criar o concurso:', error);
+      });
+  };
+
+  const handleSelectParticipant = (participant) => {
+    setSelectedParticipants((prevSelected) =>
+      prevSelected.includes(participant)
+        ? prevSelected.filter((p) => p.id !== participant.id)
+        : [...prevSelected, participant]
+    );
   };
 
   return (
@@ -95,7 +131,37 @@ const ActiveContest = () => {
           </div>
         </>
       ) : (
-        <h2>Nenhuma votação em andamento</h2>
+        <>
+          <h2>Nenhuma votação em andamento</h2>
+          <div>
+            <h3>Selecione os participantes para criar um novo concurso:</h3>
+            <div className="participants-create">
+              {participants.map((participant) => (
+                <div
+                  key={participant.id}
+                  className={`participant-card-create ${
+                    selectedParticipants.includes(participant) ? 'selected' : ''
+                  }`}
+                  onClick={() => handleSelectParticipant(participant)}
+                >
+                  <img
+                    className="participant-image-create"
+                    src={import.meta.env.VITE_API_URL + participant.photo_url}
+                    alt={participant.name}
+                  />
+                  <h4>{participant.name}</h4>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={handleCreateContest}
+              className="create-contest-button"
+              disabled={selectedParticipants.length === 0}
+            >
+              Criar Concurso
+            </button>
+          </div>
+        </>
       )}
     </>
   );
