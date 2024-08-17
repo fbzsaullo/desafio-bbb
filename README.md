@@ -235,20 +235,6 @@ Certifique-se de que todas as dependências foram instaladas corretamente e os c
         "updated_at": "2024-08-17T06:56:34.773Z",
         "photo_url": "/uploads/Ana_Souza.jpg"
     },
-    {
-        "id": 3,
-        "name": "João Silva",
-        "created_at": "2024-08-17T06:56:50.248Z",
-        "updated_at": "2024-08-17T06:56:50.311Z",
-        "photo_url": "/uploads/Joao_Silva.jpg"
-    },
-    {
-        "id": 4,
-        "name": "Mariana Lima",
-        "created_at": "2024-08-17T07:01:01.331Z",
-        "updated_at": "2024-08-17T07:01:01.608Z",
-        "photo_url": "/uploads/Mariana_Lima.jpg"
-    }
 ]
 ```
 
@@ -261,7 +247,7 @@ Certifique-se de que todas as dependências foram instaladas corretamente e os c
 ```json
 {
   "participant": {
-    "name": "Carinha Mascarado",
+    "name": "Carlos Pereira",
     "photo_base64": "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODww"
   }
 }
