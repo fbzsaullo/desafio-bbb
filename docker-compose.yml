@@ -1,4 +1,18 @@
 services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: voting_api_development
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+      
   web:
     build: ./voting-api
     command: bash -c "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"
@@ -24,20 +38,6 @@ services:
     depends_on:
       - db
       - redis
-
-  db:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: voting_api_development
-
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
 
   react-app:
     build: ./frontend
