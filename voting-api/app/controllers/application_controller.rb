@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  before_action :authenticate
-
   rescue_from JWT::VerificationError, with: :invalid_token
   rescue_from JWT::DecodeError, with: :decode_error
 
