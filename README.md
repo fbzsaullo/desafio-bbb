@@ -1,5 +1,8 @@
 # Desafio BBB
 ## to do
+- mudar api para jwt
+- contest controller: abstrair para modelagem os show (controller nao é para ter regra de negocio)
+- adicionar serialization
 - pagina para ver os contest ja finalizados
 - mostrar votos por hora
 - assugurar que não terá bots
