@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoginStyled } from "./Login.style";
-import { login } from "../../.api";
-import Notification from "../../.components/Notification/Notification";
+import { login } from "../../api";
+import Notification from "../../components/Notification/Notification";
 
 const Login = () => {
   const [email, setEmail] = useState("");
