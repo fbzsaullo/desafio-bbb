@@ -4,7 +4,28 @@
 
  Aplicação web inspirada no Big Brother Brasil, onde os usuários podem votar em seus participantes preferidos em um sistema de 'paredão'. A aplicação consiste em um frontend interativo feito em React.js com Vite, e um backend robusto construído em Ruby on Rails. O sistema é capaz de lidar com um alto volume de votos simultâneos e apresenta atualizações em tempo real dos resultados de votação.
 
-## Tecnologias
+ ## Índice
+- [Tecnologias](#tecnologias)
+- [Setup](#setup)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Passos para Configuração](#passos-para-configuração)
+    - [Usando Docker Compose](#usando-docker-compose)
+    - [Usando Make](#usando-make)
+  - [Parar e Remover Containers](#parar-e-remover-containers)
+  - [Acessando o App](#acessando-o-app)
+- [Funcionalidades](#funcionalidades)
+  - [Usuário (não logado)](#usuário-não-logado)
+  - [Usuário (logado)](#usuário-logado)
+  - [Concurso](#concurso)
+  - [Voto](#voto)
+- [API - ENDPOINTS](#api---endpoints)
+  - [Contests](#contests)
+  - [Participants](#participants)
+  - [Votes](#votes)
+  - [User](#user)
+- [TO DO](#to-do)
+
+## [Tecnologias](#desafio-bbb)
 - **Backend:**
   - **Ruby:** 3.1.2
   - **Rails:** 7.1.3
@@ -17,7 +38,7 @@
   - **Vite:** Ferramenta de build para desenvolvimento rápido e eficiente.
 
 
-## Setup
+## [Setup](#desafio-bbb)
 
 Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para facilitar a execução dos comandos. Siga as instruções abaixo para configurar e iniciar o ambiente de desenvolvimento.
 
@@ -97,7 +118,7 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
 
-# Funcionalidades
+# [Funcionalidades](#desafio-bbb)
 
 ## Usuário (não logado):
 - **Votação Ilimitada:** Pode votar quantas vezes desejar.
@@ -116,7 +137,7 @@ Certifique-se de que todas as dependências foram instaladas corretamente e os c
 ## Voto
 - **Validação por reCAPTCHA:** O voto só é computado após a validação bem-sucedida do reCAPTCHA, garantindo que é uma interação humana.
 
-## API - ENDPOINTS
+## [API - ENDPOINTS](#desafio-bbb)
 
 ### Contests
 
@@ -315,7 +336,7 @@ Certifique-se de que todas as dependências foram instaladas corretamente e os c
 }
 ```
 
-## to do
+## [to do](#desafio-bbb)
 - adicionar serialization
 - pagina para ver os contest ja finalizados
 - assugurar que não terá bots
