@@ -1,12 +1,22 @@
 # Desafio BBB
-## to do
-- adicionar serialization
-- pagina para ver os contest ja finalizados
-- assugurar que não terá bots
-  - Rack Attack
-- documentar Arquitetura
 
-## SETUP
+## Descrição
+
+ Aplicação web inspirada no Big Brother Brasil, onde os usuários podem votar em seus participantes preferidos em um sistema de 'paredão'. A aplicação consiste em um frontend interativo feito em React.js com Vite, e um backend robusto construído em Ruby on Rails. O sistema é capaz de lidar com um alto volume de votos simultâneos e apresenta atualizações em tempo real dos resultados de votação.
+
+## Tecnologias
+- **Backend:**
+  - **Ruby:** 3.1.2
+  - **Rails:** 7.1.3
+  - **Sidekiq:** Para processamento de jobs em background.
+  - **Redis** Utilizado como sistema de filas para o Sidekiq e para cache.
+  - **Banco de dados:** PostgreSQL
+- **Frontend:**
+  - **Node.js**
+  - **React**
+  - **Vite:** Ferramenta de build para desenvolvimento rápido e eficiente.
+
+## Setup
 
 Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para facilitar a execução dos comandos. Siga as instruções abaixo para configurar e iniciar o ambiente de desenvolvimento.
 
@@ -282,3 +292,10 @@ Certifique-se de que todas as dependências foram instaladas corretamente e os c
   "expires_at": "2024-08-18T05:43:20.508Z"
 }
 ```
+
+## to do
+- adicionar serialization
+- pagina para ver os contest ja finalizados
+- assugurar que não terá bots
+  - Rack Attack
+- documentar Arquitetura
