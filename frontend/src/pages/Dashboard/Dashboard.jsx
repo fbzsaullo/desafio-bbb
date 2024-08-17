@@ -37,7 +37,8 @@ const Dashboard = () => {
   }, []);
 
   const handleDisconnect = () => {
-    localStorage.removeItem('apiKey');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiresAt');
     window.location.href = '/';
   };
 

@@ -1,5 +1,5 @@
 class Api::ParticipantsController < ApplicationController
-  before_action :authorize_request, only: [:create]
+  before_action :authenticate, only: [:create]
 
   def index
     render json: Participant.all.as_json(methods: :photo_url)

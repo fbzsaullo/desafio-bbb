@@ -17,6 +17,9 @@ gem 'sidekiq'
 # Add finite state machines to Ruby classes
 gem 'aasm'
 
+# JWT: JSON Web Token implementation in Ruby
+gem 'jwt'
+
 # Rack Cors: Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible
 gem 'rack-cors'
 

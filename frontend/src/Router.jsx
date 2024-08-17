@@ -6,11 +6,23 @@ import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 const isLoggedIn = () => {
-  const apiKey = localStorage.getItem('apiKey');
-  if (!apiKey) {
+  const token = localStorage.getItem('token');
+  const tokenExpiresAt = localStorage.getItem('tokenExpiresAt');
+
+  if (!token || !tokenExpiresAt) {
     return false;
   }
-  return apiKey.length > 32;
+
+  const expiresAt = new Date(tokenExpiresAt);
+  const now = new Date();
+
+  if (now >= expiresAt) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiresAt');
+    return false;
+  }
+
+  return true;
 };
 
 export const Router = () => {

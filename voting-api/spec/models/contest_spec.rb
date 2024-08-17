@@ -49,4 +49,63 @@ RSpec.describe Contest, type: :model do
       expect(contest.participant_votes(participant)).to contain_exactly(vote)
     end
   end
+
+  describe '#total_votes' do
+    it 'returns the total number of votes for the contest' do
+      contest = create(:contest)
+      create_list(:vote, 5, contest: contest)
+
+      expect(contest.total_votes).to eq(5)
+    end
+  end
+
+  describe '#votes_by_participant' do
+    it 'returns a list of participants with their vote counts and percentages' do
+      contest = create(:contest)
+      participant1 = contest.participants.first
+      participant2 = contest.participants.second
+      create_list(:vote, 3, contest: contest, participant: participant1)
+      create_list(:vote, 2, contest: contest, participant: participant2)
+
+      votes_by_participant = contest.votes_by_participant
+
+      expect(votes_by_participant).to include(
+        hash_including(id: participant1.id, name: participant1.name, total_votes: 3),
+        hash_including(id: participant2.id, name: participant2.name, total_votes: 2)
+      )
+    end
+  end
+
+  describe '#detailed_votes_by_participant' do
+    it 'returns a list of participants with detailed vote data' do
+      contest = create(:contest)
+      participant = contest.participants.first
+      vote = create(:vote, contest: contest, participant: participant)
+
+      detailed_votes = contest.detailed_votes_by_participant
+
+      expect(detailed_votes).to include(
+        hash_including(id: participant.id, name: participant.name, votes: [hash_including(id: vote.id)])
+      )
+    end
+  end
+
+  describe '#active_contest_data' do
+    it 'returns contest data including votes by participant for active contests' do
+      contest = create(:contest)
+      participant = contest.participants.first
+      create_list(:vote, 2, contest: contest, participant: participant)
+
+      data = contest.active_contest_data
+
+      expect(data[:total_votes]).to eq(2)
+      expect(data[:participants].first[:total_votes]).to eq(2)
+    end
+
+    it 'returns nil if the contest is not active' do
+      contest = create(:contest, status: 'completed')
+
+      expect(contest.active_contest_data).to be_nil
+    end
+  end
 end

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isLoggedIn = () => {
-    const apiKey = localStorage.getItem('apiKey');
-    if (!apiKey) {
+    const token = localStorage.getItem('token');
+    if (!token) {
       return false;
     }
-    return apiKey.length > 32;
+    return token.length > 32;
   };
 
   return (
