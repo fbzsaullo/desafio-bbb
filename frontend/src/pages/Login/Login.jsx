@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoginStyled } from "./Login.style";
-import { login } from "../../api";
-import Notification from "../../components/Notification/Notification";
+import { login } from "../../.api";
+import Notification from "../../.components/Notification/Notification";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,8 +12,12 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await login(email, password);
-      localStorage.setItem("apiKey", response.data.api_key);
-      
+      const token = response.data.token;
+      const expiresAt = response.data.expires_at;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("tokenExpiresAt", expiresAt);
+
       window.location.href = "/dashboard";
     } catch (error) {
       console.error('Error logging in:', error);
@@ -22,6 +26,12 @@ const Login = () => {
       setTimeout(() => {
         setShowError(false);
       }, 3000);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   };
 
@@ -43,7 +53,8 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            />
+            onKeyDown={handleKeyDown}
+          />
           <button className="login-button" onClick={handleLogin}>
             Login
           </button>
