@@ -7,7 +7,7 @@ const ParticipantsList = () => {
   const [participants, setParticipants] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState('');
-  const [photoUrl, setPhotoUrl] = useState('');
+  const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
     getParticipants()
@@ -20,22 +20,37 @@ const ParticipantsList = () => {
       });
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handlePhotoChange = (e) => {
+    setPhoto(e.target.files[0]);
+  };
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const newParticipant = {
-      name,
-      photo_url: photoUrl,
-    };
-    createParticipant(newParticipant)
-      .then((response) => {
-        setParticipants([response.data, ...participants]);
-        setShowForm(false);
-        setName('');
-        setPhotoUrl('');
-      })
-      .catch((error) => {
-        console.error('Erro ao criar participante:', error);
-      });
+
+    if (photo) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+
+        const newParticipant = {
+          participant: {
+            name,
+            photo_base64: base64String,
+          },
+        };
+
+        try {
+          const response = await createParticipant(newParticipant);
+          setParticipants([response.data, ...participants]);
+          setShowForm(false);
+          setName('');
+          setPhoto(null);
+        } catch (error) {
+          console.error('Erro ao criar participante:', error);
+        }
+      };
+      reader.readAsDataURL(photo);
+    }
   };
 
   return (
@@ -55,12 +70,12 @@ const ParticipantsList = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="photoUrl">URL da Foto:</label>
+              <label htmlFor="photo">Foto:</label>
               <input
-                type="text"
-                id="photoUrl"
-                value={photoUrl}
-                onChange={(e) => setPhotoUrl(e.target.value)}
+                type="file"
+                id="photo"
+                accept="image/*"
+                onChange={handlePhotoChange}
                 required
               />
             </div>
