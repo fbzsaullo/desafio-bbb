@@ -14,6 +14,7 @@
     - [Setup Sem Docker/Make](#sem-usar-o-docker)
   - [Parar e Remover Containers](#parar-e-remover-containers)
   - [Acessando o App](#acessando-o-app)
+  - [Rodar testes](#rodar-testes)
 - [Funcionalidades](#funcionalidades)
   - [Usuário (não logado)](#usuário-não-logado)
   - [Usuário (logado)](#usuário-logado)
@@ -232,6 +233,30 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 - **Front-end:** http://localhost:3001
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
+
+### Rodar testes
+
+Para parar os testes SPECs do Rails
+
+**Usando Docker:**
+  ```bash
+  docker-compose run web bundle exec rspec
+  ```
+
+**Usando Make:**
+  ```bash
+  make test
+  ```
+
+  - Para rodar um teste específico:
+    ```bash
+    make specific_test FILE=/app/spec/models/match_spec.rb
+    ```
+**Manual *(Sem Docker)*:**
+  ```bash
+  cd voting-api
+  bundle exec rspec
+  ```
 
 ## [Funcionalidades](#desafio-bbb)
 
