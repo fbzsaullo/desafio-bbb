@@ -2,7 +2,6 @@
 ## to do
 - adicionar serialization
 - pagina para ver os contest ja finalizados
-- mostrar votos por hora
 - assugurar que não terá bots
   - Rack Attack
 - documentar SETUP
