@@ -1,7 +1,5 @@
 # Desafio BBB
 ## to do
-- mudar api para jwt
-- refatorar o job, nao fazer tudo no perform
 - adicionar serialization
 - pagina para ver os contest ja finalizados
 - mostrar votos por hora
