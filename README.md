@@ -4,7 +4,6 @@
 - pagina para ver os contest ja finalizados
 - assugurar que não terá bots
   - Rack Attack
-- documentar SETUP
 - documentar Arquitetura
 
 ## SETUP
