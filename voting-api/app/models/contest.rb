@@ -64,6 +64,28 @@ class Contest < ApplicationRecord
     }
   end
 
+  def winner
+    return nil if total_votes.zero?
+
+    participants.max_by { |participant| participant_votes(participant).count }
+  end
+
+  def as_index_json
+    {
+      id: id,
+      status: status,
+      created_at: created_at,
+      updated_at: updated_at,
+      total_votes: total_votes,
+      winner: winner ? {
+        id: winner.id,
+        name: winner.name,
+        photo_url: winner.photo_url,
+        total_votes: participant_votes(winner).count
+      } : nil
+    }
+  end
+
   private
 
   def previous_contest_completed

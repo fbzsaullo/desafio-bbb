@@ -5,7 +5,7 @@ class Api::ContestsController < ApplicationController
   before_action :authenticate, only: [:create, :complete]
 
   def index
-    render json: Contest.all
+    render json: Contest.all.map(&:as_index_json), status: :ok
   end
 
   def show
