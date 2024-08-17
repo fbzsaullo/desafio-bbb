@@ -4,6 +4,7 @@ import { faSignOutAlt, faEnvelope, faChartBar, faTrophy } from '@fortawesome/fre
 import { useState } from 'react';
 import ActiveContest from '../../components/ActiveContest/ActiveContest';
 import ContestsList from '../../components/ContestsList/ContestsList';
+import ParticipantsList from '../../components/ParticipantsList/ParticipantsList';
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('contest');
@@ -51,7 +52,7 @@ const Dashboard = () => {
           ) : activeSection === 'contests' ? (
             <ContestsList />
           ) : activeSection === 'participants' ? (
-            <h2>Participantes:</h2>
+            <ParticipantsList />
           ) : (
             <h2>Nenhuma votação em andamento</h2>
           )}
