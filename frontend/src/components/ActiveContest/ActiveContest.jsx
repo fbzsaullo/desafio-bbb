@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getActivedContest, getActivedContestVotes } from '../../api';
+import { getActivedContest, getActivedContestVotes, finishContest } from '../../api';
 import ContestChart from '../../components/ContestChart/ContestChart';
 
 const ActiveContest = () => {
@@ -33,11 +33,27 @@ const ActiveContest = () => {
       });
   }, []);
 
+  const handleFinishContest = () => {
+    if (contest) {
+      finishContest(contest.contest.id)
+        .then(() => {
+          console.log('Concurso finalizado com sucesso!');
+          setContest(null);
+        })
+        .catch((error) => {
+          console.error('Erro ao finalizar o concurso:', error);
+        });
+    }
+  };
+
   return (
     <>
       {contest ? (
         <>
-          <h2>Concurso ativo:</h2>
+          <div className="header">
+            <h2>Concurso ativo - {contest.contest.id}</h2>
+            <button onClick={handleFinishContest} className="finish-button">Finalizar Concurso</button>
+          </div>
           <div className="stats">
             <div className="stat-card">
               <h3>Total de Votos</h3>

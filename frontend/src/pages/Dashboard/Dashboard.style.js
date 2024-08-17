@@ -81,6 +81,24 @@ export const DesignStyle = styled.div`
     }
   }
 
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        filter: drop-shadow(0 0 0.75rem #007bff);
+      }
+    }
+  }
+
   .stat-card {
     background-color: #dce6f7;
     padding: 20px;
