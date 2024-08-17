@@ -65,7 +65,9 @@ make stop
 
 ### Acessando o App
 
-Após iniciar os containers, o front-end estará disponível no endereço [http://localhost:3000](http://localhost:3000).
+Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
+- **Back-end:** http://localhost:3000
+- **Front-end:** http://localhost:3001
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
 
