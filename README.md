@@ -501,7 +501,3 @@ Para parar os testes SPECs do Rails
 
 ## [to do](#desafio-bbb)
 - adicionar serialization
-- pagina para ver os contest ja finalizados
-- assugurar que não terá bots
-  - Rack Attack
-- documentar Arquitetura
