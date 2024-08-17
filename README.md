@@ -52,13 +52,13 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 ## Pré-requisitos
 
-- **[Docker](https://www.docker.com/get-started)**
-- **[Docker Compose](https://docs.docker.com/compose/install/)**
-- **[Make (opcional)](https://www.gnu.org/software/make/)**
 - **[Ruby](https://www.ruby-lang.org/en/documentation/installation/)**: 3.1.2
 - **[Rails](https://guides.rubyonrails.org/getting_started.html#installing-rails)**: 7.1.3
 - **[Node.js](https://nodejs.org/en/download/)**
 - **[Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)**
+- **[Docker](https://www.docker.com/get-started)**
+- **[Docker Compose](https://docs.docker.com/compose/install/)**
+- **[Make (opcional)](https://www.gnu.org/software/make/)**
 
 ### Passos para Configuração
 
