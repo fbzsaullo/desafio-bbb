@@ -21,6 +21,49 @@ class Contest < ApplicationRecord
     votes.where(participant: participant)
   end
 
+  def total_votes
+    votes.count
+  end
+
+  def votes_by_participant
+    participants.map do |participant|
+      participant_total_votes = participant_votes(participant).count
+      percentage = total_votes.zero? ? 0 : (participant_total_votes.to_f / total_votes) * 100
+      {
+        id: participant.id,
+        name: participant.name,
+        photo_url: participant.photo_url,
+        percentage: percentage.round(2),
+        total_votes: participant_total_votes
+      }
+    end
+  end
+
+  def detailed_votes_by_participant
+    participants.map do |participant|
+      {
+        id: participant.id,
+        name: participant.name,
+        votes: participant_votes(participant).map do |vote|
+          {
+            id: vote.id,
+            created_at: vote.created_at
+          }
+        end
+      }
+    end
+  end
+
+  def active_contest_data
+    return nil unless active?
+
+    {
+      contest: self,
+      total_votes: total_votes,
+      participants: votes_by_participant
+    }
+  end
+
   private
 
   def previous_contest_completed
