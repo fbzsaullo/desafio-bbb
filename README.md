@@ -97,6 +97,25 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
 
+# Funcionalidades
+
+## Usuário (não logado):
+- **Votação Ilimitada:** Pode votar quantas vezes desejar.
+- **Login para Produção:** Pode realizar login caso seja um usuário da produção.
+
+## Usuário (logado):
+- **Dashboard do Concurso Ativo:** Acesso a um painel com informações detalhadas do concurso atualmente ativo.
+- **Criação de Participantes:** Possibilidade de criar novos participantes para os concursos.
+- **Criação de Concursos:** Pode iniciar novos concursos, respeitando as regras de status dos concursos.
+- **Visualização de Concursos:** Pode visualizar a lista completa de todos os concursos já criados, incluindo ativos e concluídos.
+
+## Concurso
+- **Status de Criação:** Concursos são criados com o status `'active'`.
+- **Regras de Criação:** Um novo concurso só pode ser criado se todos os outros concursos existentes tiverem o status `'completed'`.
+
+## Voto
+- **Validação por reCAPTCHA:** O voto só é computado após a validação bem-sucedida do reCAPTCHA, garantindo que é uma interação humana.
+
 ## API - ENDPOINTS
 
 ### Contests
