@@ -1,7 +1,6 @@
 # Desafio BBB
 ## to do
 - mudar api para jwt
-- contest controller: abstrair para modelagem os show (controller nao é para ter regra de negocio)
 - refatorar o job, nao fazer tudo no perform
 - adicionar serialization
 - pagina para ver os contest ja finalizados
