@@ -11,6 +11,7 @@
   - [Passos para Configuração](#passos-para-configuração)
     - [Usando Docker Compose](#usando-docker-compose)
     - [Usando Make](#usando-make)
+    - [Setup Sem Docker/Make](#sem-usar-o-docker)
   - [Parar e Remover Containers](#parar-e-remover-containers)
   - [Acessando o App](#acessando-o-app)
 - [Funcionalidades](#funcionalidades)
@@ -43,7 +44,6 @@
   - **Node.js**
   - **React**
   - **Vite:** Ferramenta de build para desenvolvimento rápido e eficiente.
-
 
 ## [Setup](#desafio-bbb)
 
@@ -116,6 +116,114 @@ Ou, se estiver usando `make`:
 ```bash
 make stop
 ```
+
+### Sem usar o Docker
+
+Se você preferir configurar o projeto manualmente sem usar Docker, siga os passos abaixo:
+
+#### Configurando o Backend (Rails)
+
+1. **Instale as dependências do backend:**
+
+   ```bash
+   cd voting-api
+   bundle install
+   ```
+
+2. **Configure o banco de dados:**
+
+   Edite o arquivo `config/database.yml` no diretório `voting-api`. Comente ou remova as configurações relacionadas ao Docker, conforme mostrado abaixo:
+
+   **Original:**
+   ```yaml
+   default: &default
+     adapter: postgresql
+     encoding: unicode
+     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+     username: postgres
+     password: postgres
+     port: 5432
+     host: db
+   ```
+
+   **Modificado para configuração manual:**
+   ```yaml
+   default: &default
+     adapter: postgresql
+     encoding: unicode
+     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+     # username: postgres
+     # password: postgres
+     # port: 5432
+     # host: db
+   ```
+
+3. **Crie e migre o banco de dados:**
+
+   Com o banco de dados configurado, execute os seguintes comandos para criar e migrar as tabelas:
+
+   ```bash
+   rails db:create
+   rails db:migrate
+   ```
+
+4. **Instale o Redis:**
+
+   O Redis é utilizado pelo Sidekiq para gerenciar as filas de jobs em background. Siga os passos abaixo para instalar e configurar o Redis:
+
+   - No **Ubuntu/Debian**:
+
+     ```bash
+     sudo apt-get update
+     sudo apt-get install redis-server
+     ```
+
+   - No **macOS** (usando Homebrew):
+
+     ```bash
+     brew install redis
+     ```
+
+5. **Inicie o Redis:**
+
+   ```bash
+   redis-server
+   ```
+
+6. **Inicie o Sidekiq:**
+
+   O Sidekiq processa os jobs em background. Certifique-se de que o Redis esteja rodando e, em seguida, inicie o Sidekiq:
+
+   ```bash
+   bundle exec sidekiq -C config/sidekiq.yml
+   ```
+
+7. **Inicie o servidor Rails:**
+
+   Agora, você pode iniciar o servidor do backend:
+
+   ```bash
+   rails server
+   ```
+
+#### Configurando o Frontend (React)
+
+1. **Instale as dependências do frontend:**
+
+   Navegue até o diretório `frontend` e instale as dependências:
+
+   ```bash
+   cd ../frontend
+   npm install
+   ```
+
+2. **Inicie o servidor de desenvolvimento do Vite:**
+
+   Agora, você pode iniciar o servidor de desenvolvimento para o frontend:
+
+   ```bash
+   npm run dev
+   ```
 
 ### Acessando o App
 
