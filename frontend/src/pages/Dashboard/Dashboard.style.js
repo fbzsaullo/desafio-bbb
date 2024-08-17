@@ -49,6 +49,15 @@ export const DesignStyle = styled.div`
     }
   }
 
+  .disconnect {
+    color: #dc3545;
+    &:hover {
+      color: #dc3545;
+      filter: drop-shadow(0 0 0.75rem #dc3545);
+    }
+  }
+
+
   .sidebar-item.active {
     color: #007bff;
     background-color: #d6ddf4;
