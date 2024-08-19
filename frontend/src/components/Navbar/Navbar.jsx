@@ -14,10 +14,12 @@ const Navbar = () => {
   return (
     <NavbarStyle>
       <div className="container">
-        <div className="logo">
-          <img src={icon} alt="icon" />
-          <h4>Desafio BBB</h4>
-        </div>
+          <Link to="/">
+            <div className="logo">
+                <img src={icon} alt="icon" />
+                <h4>Desafio BBB</h4>
+            </div>
+          </Link>
         <div className="button">
           <Link to={isLoggedIn() ? "/dashboard" : "/login"}>
             <button>{isLoggedIn() ? "Dashboard" : "Login"}</button>

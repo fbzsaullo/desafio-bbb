@@ -6,6 +6,11 @@ export const NavbarStyle = styled.div`
   height: 75px;
   padding: 0 5px;
 
+  a{
+    text-decoration: none;
+    color: #F2F4FC;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
