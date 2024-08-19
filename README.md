@@ -28,6 +28,7 @@
   - [Testes Automatizados com RSpec](#testes-automatizados-com-rspec)
   - [CI/CD Automatizado](#cicd-automatizado)
   - [Docker e Docker Compose](#docker-e-docker-compose)
+- [Arquitetura](#arquitetura)
 - [API - ENDPOINTS](#api---endpoints)
   - [Contests](#contests)
   - [Participants](#participants)
@@ -333,6 +334,16 @@ Para parar os testes SPECs do Rails
 - **Ambiente de Desenvolvimento Consistente:** Utilizar Docker Compose para orquestrar os serviços necessários, incluindo o banco de dados Postgres, Redis, a aplicação Rails, Sidekiq e o app React, garantindo um ambiente de desenvolvimento consistente para todos os desenvolvedores.
 - **Isolamento de Serviços:** Cada componente (API, Sidekiq, frontend) roda em seu próprio contêiner, facilitando a manutenção e o isolamento de falhas.
 - **Facilidade de Escalabilidade:** Configurar os serviços de forma que possam ser facilmente escalados horizontalmente, se necessário, apenas ajustando a configuração do Docker Compose.
+
+## [Arquitetura](#desafio-bbb)
+
+- **Frontend:** Responsável pela interface gráfica com o usuário, utilizando React com Vite para renderizar formulários de votação, painéis de resultados e outras informações relevantes.
+
+- **Backend:** Implementado em Rails, o backend lida com a lógica de negócio, incluindo a validação dos votos, processamento dos resultados e comunicação com o banco de dados.
+
+- **Banco de dados:** Utiliza PostgreSQL como banco de dados relacional para armazenamento dos dados da aplicação. Abaixo, segue a estrutura das principais tabelas utilizadas:
+
+[![](https://mermaid.ink/img/pako:eNqtVM1uwjAMfpUoZ3iB3hDjwGGAaLfDVKkyiVciaFIl7qap9N2XUihDa7dOa06OP_98dmKXXBiJPOBoHxSkFrJYM3-ewsU2ZGVzqc9OpUoTU_KmcmSVThlmoI7ftDk4926sTKRK0dENl0BIKkMmLHpRJtAFFrm8A6tYN8Jmto2W8-VmtooG8tOQ4Wjp5-tVtAiHpnYEVLixkyd_6MFFJYwm_wpJB5SDJSVUDvoe_ifX57WnOoxcH4MfuI_5iU6n6dSUDeGAxdyiwB2yN0PGxbzfoes1av-2HD8ZV__22_ziS5h9bQe6vgC9bPmEZ2j9SEo_1Of2-6h79CPAa3MJ9lCbVd4OCjLhhxY8IFvghFtTpHsevMLR-VvTvMtSaLUoFRn72OyM8-qY-IL1izFXm-oTYAZYfQ?type=png)](https://mermaid.live/edit#pako:eNqtVM1uwjAMfpUoZ3iB3hDjwGGAaLfDVKkyiVciaFIl7qap9N2XUihDa7dOa06OP_98dmKXXBiJPOBoHxSkFrJYM3-ewsU2ZGVzqc9OpUoTU_KmcmSVThlmoI7ftDk4926sTKRK0dENl0BIKkMmLHpRJtAFFrm8A6tYN8Jmto2W8-VmtooG8tOQ4Wjp5-tVtAiHpnYEVLixkyd_6MFFJYwm_wpJB5SDJSVUDvoe_ifX57WnOoxcH4MfuI_5iU6n6dSUDeGAxdyiwB2yN0PGxbzfoes1av-2HD8ZV__22_ziS5h9bQe6vgC9bPmEZ2j9SEo_1Of2-6h79CPAa3MJ9lCbVd4OCjLhhxY8IFvghFtTpHsevMLR-VvTvMtSaLUoFRn72OyM8-qY-IL1izFXm-oTYAZYfQ)
 
 ## [API - ENDPOINTS](#desafio-bbb)
 
