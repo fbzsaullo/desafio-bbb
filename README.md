@@ -14,6 +14,7 @@
     - [Setup Sem Docker/Make](#sem-usar-o-docker)
   - [Parar e Remover Containers](#parar-e-remover-containers)
   - [Acessando o App](#acessando-o-app)
+  - [Acessar o Dashboard](#acessar-o-dashboard)
   - [Rodar testes](#rodar-testes)
 - [Funcionalidades](#funcionalidades)
   - [Usuário (não logado)](#usuário-não-logado)
@@ -235,6 +236,37 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 - **Front-end:** http://localhost:3001
 
 Certifique-se de que todas as dependências foram instaladas corretamente e os containers estão rodando antes de acessar o app.
+
+### Acessar o Dashboard
+Para acessar o dashboard do aplicativo, você precisará criar um usuário diretamente no console do Rails. Siga os passos abaixo de acordo com a forma que você está utilizando para rodar o ambiente.
+
+**Usando Docker:**
+  ```bash
+  docker-compose run web rails console
+  ```
+
+  ```ruby
+  User.create(email: 'seu@email.com', password: 'senha123')
+  ```
+
+**Usando Make:**
+  ```bash
+  make console
+  ```
+
+  ```ruby
+  User.create(email: 'seu@email.com', password: 'senha123')
+  ```
+
+**Manual *(Sem Docker)*:**
+  ```bash
+  cd voting-api
+  rails console
+```
+
+  ```ruby
+  User.create(email: 'seu@email.com', password: 'senha123')
+  ```
 
 ### Rodar testes
 
