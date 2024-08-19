@@ -59,3 +59,4 @@
 /frontend/*.sw?
 /frontend/*.env
 !/frontend/.env.example
+*.env

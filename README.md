@@ -70,11 +70,10 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 2. **Configurar variáveis de ambiente:**
 
-   Copie o arquivo `.env.example` para `.env` tanto no diretório do front-end (`./frontend`) quanto no diretório do back-end (`./voting-api`):
+   Copie o arquivo `.env.example` para `.env`
 
    ```bash
-   cp ./frontend/.env.example ./frontend/.env
-   cp ./voting-api/.env.example ./voting-api/.env
+   cp .env.example .env
    ```
 
 #### Usando Docker Compose
