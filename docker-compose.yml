@@ -28,7 +28,6 @@ services:
       RAILS_ENV: ${ENV}
       REDIS_URL: redis://redis:6379/0
     depends_on:
-      - db
       - redis
 
   sidekiq:
@@ -42,7 +41,6 @@ services:
       RAILS_ENV: ${ENV}
       REDIS_URL: redis://redis:6379/0
     depends_on:
-      - db
       - redis
 
   react-app:
