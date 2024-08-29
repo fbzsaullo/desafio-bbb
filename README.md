@@ -135,35 +135,7 @@ Se você preferir configurar o projeto manualmente sem usar Docker, siga os pass
    bundle install
    ```
 
-2. **Configure o banco de dados:**
-
-   Edite o arquivo `config/database.yml` no diretório `voting-api`. Comente ou remova as configurações relacionadas ao Docker, conforme mostrado abaixo:
-
-   **Original:**
-   ```yaml
-   default: &default
-     adapter: postgresql
-     encoding: unicode
-     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-     username: postgres
-     password: postgres
-     port: 5432
-     host: db
-   ```
-
-   **Modificado para configuração manual:**
-   ```yaml
-   default: &default
-     adapter: postgresql
-     encoding: unicode
-     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-     # username: postgres
-     # password: postgres
-     # port: 5432
-     # host: db
-   ```
-
-3. **Crie e migre o banco de dados:**
+2. **Crie e migre o banco de dados:**
 
    Com o banco de dados configurado, execute os seguintes comandos para criar e migrar as tabelas:
 
@@ -172,7 +144,7 @@ Se você preferir configurar o projeto manualmente sem usar Docker, siga os pass
    rails db:migrate
    ```
 
-4. **Instale o Redis:**
+3. **Instale o Redis:**
 
    O Redis é utilizado pelo Sidekiq para gerenciar as filas de jobs em background. Siga os passos abaixo para instalar e configurar o Redis:
 
@@ -189,13 +161,13 @@ Se você preferir configurar o projeto manualmente sem usar Docker, siga os pass
      brew install redis
      ```
 
-5. **Inicie o Redis:**
+4. **Inicie o Redis:**
 
    ```bash
    redis-server
    ```
 
-6. **Inicie o Sidekiq:**
+5. **Inicie o Sidekiq:**
 
    O Sidekiq processa os jobs em background. Certifique-se de que o Redis esteja rodando e, em seguida, inicie o Sidekiq:
 
@@ -203,7 +175,7 @@ Se você preferir configurar o projeto manualmente sem usar Docker, siga os pass
    bundle exec sidekiq -C config/sidekiq.yml
    ```
 
-7. **Inicie o servidor Rails:**
+6. **Inicie o servidor Rails:**
 
    Agora, você pode iniciar o servidor do backend:
 
