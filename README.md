@@ -70,6 +70,15 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
    cd desafio-bbb
    ```
 
+### Passos para Configuração
+
+1. **Clonar o repositório:**
+
+   ```bash
+   git clone git@github.com:fbzsaullo/desafio-bbb.git
+   cd desafio-bbb
+   ```
+
 2. **Instalar as dependências do frontend:**
 
    Navegue até o diretório `frontend` e instale as dependências necessárias:
