@@ -70,9 +70,19 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
    cd desafio-bbb
    ```
 
-2. **Configurar variáveis de ambiente:**
+2. **Instalar as dependências do frontend:**
 
-   Copie o arquivo `.env.example` para `.env`
+   Navegue até o diretório `frontend` e instale as dependências necessárias:
+
+   ```bash
+   cd frontend
+   npm install
+   cd ..
+   ```
+
+3. **Configurar variáveis de ambiente:**
+
+   Copie o arquivo `.env.example` para `.env`:
 
    ```bash
    cp .env.example .env
@@ -80,13 +90,13 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 #### Usando Docker Compose
 
-3. **Construir as imagens Docker:**
+4. **Construir as imagens Docker:**
 
    ```bash
    docker-compose build
    ```
 
-4. **Iniciar os containers:**
+5. **Iniciar os containers:**
 
    ```bash
    docker-compose up
@@ -96,18 +106,18 @@ Este projeto pode ser configurado utilizando o `docker-compose` ou o `make` para
 
 Se preferir utilizar o `make`, os seguintes comandos estão disponíveis:
 
-3. **Construir as imagens Docker:**
+4. **Construir as imagens Docker:**
 
    ```bash
    make build
    ```
 
-4. **Iniciar os containers:**
+5. **Iniciar os containers:**
 
    ```bash
    make start
    ```
-
+   
 ### Parar e Remover Containers
 
 Para parar os containers e remover as redes, execute:
