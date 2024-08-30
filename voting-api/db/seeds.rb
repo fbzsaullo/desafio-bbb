@@ -9,9 +9,9 @@
 #   end
 
 # participants.each do |p|
-#   votes = rand(1000..5000)
+#   (0..11).each do |i|
+#     votes = rand(10..50)
 #     votes.times do
-#     (0..11).each do |i|
 #       Vote.create!(
 #         participant_id: p.id,
 #         contest_id:contest.id,
@@ -21,4 +21,3 @@
 #     end
 #   end
 # end
-  
